@@ -1,0 +1,170 @@
+<!-- -->
+<launch>
+
+  <arg name="front_hokuyo_laser"     default="False" />
+  <arg name="rear_hokuyo_laser"      default="False" />
+  <arg name="front_leuze_laser"      default="False" />
+  <arg name="rear_leuze_laser"       default="False" />
+  <arg name="ladybug"                default="False" />
+
+  <include file="$(find car_description)/machines/$(optenv ROBOT car)_$(optenv ROS_MODE sim).machines" />
+
+  <group ns="$(optenv ROBOT car)">
+
+    <!-- front hokuyo laser -->
+    <!-- published topics: /$(optenv ROBOT car)/sensors/front_hokuyo_laser_scan -->
+    <!-- subscribed topics: -->
+    <!-- service clients: -->
+    <!-- service servers: -->
+    <!-- action clients: -->
+    <!-- action servers: -->
+    <node pkg ="iri_hokuyo_laser"
+          type="iri_hokuyo_laser"
+          name="front_hokuyo_laser"
+          machine="ext"
+          if="$(arg front_hokuyo_laser)">
+      <remap from="/$(optenv ROBOT car)/front_hokuyo_laser/scan"
+               to="/$(optenv ROBOT car)/sensors/front_hokuyo_laser_scan"/>
+      <param name="frame_id"     value="$(optenv ROBOT car)/front_hokuyo"/>
+      <param name="use_ethernet" value="True" />
+      <param name="ip_address"   value="192.168.50.4" />
+      <param name="angle_min"    value="-1.57" />
+      <param name="angle_max"    value="1.57" />
+    </node>
+
+    <node pkg="topic_tools"
+          type="relay"
+          name="front_hokuyo_relay"
+          machine="nav"
+          args="/$(optenv ROBOT car)/sensors/front_hokuyo_laser_scan /$(optenv ROBOT car)/sensors/lasers"
+          if="$(arg front_hokuyo_laser)">
+    </node>
+
+    <!-- rear hokuyo laser -->
+    <!-- published topics: /$(optenv ROBOT car)/sensors/rear_hokuyo_laser_scan -->
+    <!-- subscribed topics: -->
+    <!-- service clients: -->
+    <!-- service servers: -->
+    <!-- action clients: -->
+    <!-- action servers: -->
+    <node pkg ="iri_hokuyo_laser"
+          type="iri_hokuyo_laser"
+          name="rear_hokuyo_laser"
+          machine="ext"
+          if="$(arg rear_hokuyo_laser)">
+      <remap from="/$(optenv ROBOT car)/rear_hokuyo_laser/scan"
+               to="/$(optenv ROBOT car)/sensors/rear_hokuyo_laser_scan"/>
+      <param name="frame_id"     value="$(optenv ROBOT car)/rear_hokuyo"/>
+      <param name="use_ethernet" value="True" />
+      <param name="ip_address"   value="192.168.50.5" />
+      <param name="angle_min"    value="-1.57" />
+      <param name="angle_max"    value="1.57" />
+    </node>
+
+    <node pkg="topic_tools"
+          type="relay"
+          name="rear_hokuyo_relay"
+          machine="nav"
+          args="/$(optenv ROBOT car)/sensors/rear_hokuyo_laser_scan /$(optenv ROBOT car)/sensors/lasers"
+          if="$(arg rear_hokuyo_laser)">
+    </node>
+
+    <!-- front leuze laser -->
+    <!-- published topics: /$(optenv ROBOT car)/sensors/front_leuze_laser_scan -->
+    <!-- subscribed topics: -->
+    <!-- service clients: -->
+    <!-- service servers: -->
+    <!-- action clients: -->
+    <!-- action servers: -->
+    <node pkg ="iri_leuze_laser"
+          type="iri_leuze_laser"
+          name="front_leuze_laser"
+          machine="ext"
+          if="$(arg front_leuze_laser)">
+      <remap from="/$(optenv ROBOT car)/front_leuze_laser/scan"
+               to="/$(optenv ROBOT car)/sensors/front_leuze_laser_scan"/>
+      <param name="frame_id"     value="$(optenv ROBOT car)/front_leuze"/>
+      <param name="serial_port"  value="/dev/ttyUSB0" />
+    </node>
+
+    <!--
+    <node pkg="topic_tools"
+          type="relay"
+          name="front_leuze_relay"
+          machine="ext"
+          args="/$(optenv ROBOT car)/sensors/front_leuze_laser_scan /$(optenv ROBOT car)/sensors/leuze_lasers"
+          if="$(arg front_leuze_laser)">
+    </node>
+    -->
+
+    <!-- rear leuze laser -->
+    <!-- published topics: /$(optenv ROBOT car)/sensors/rear_leuze_laser_scan -->
+    <!-- subscribed topics: -->
+    <!-- service clients: -->
+    <!-- service servers: -->
+    <!-- action clients: -->
+    <!-- action servers: -->
+    <node pkg ="iri_leuze_laser"
+          type="iri_leuze_laser"
+          name="rear_leuze_laser"
+          machine="ext"
+          if="$(arg rear_leuze_laser)">
+      <remap from="/$(optenv ROBOT car)/rear_leuze_laser/scan"
+               to="/$(optenv ROBOT car)/sensors/rear_leuze_laser_scan"/>
+      <param name="frame_id"     value="$(optenv ROBOT car)/rear_leuze"/>
+      <param name="serial_port"  value="/dev/ttyUSB1" />
+    </node>
+
+   <!--
+    <node pkg="topic_tools"
+          type="relay"
+          name="rear_leuze_relay"
+          machine="ext"
+          args="/$(optenv ROBOT car)/sensors/rear_leuze_laser_scan /$(optenv ROBOT car)/sensors/leuze_lasers"
+          if="$(arg rear_leuze_laser)">
+    </node>
+    -->
+
+    <!-- ladybug -->
+    <!-- published topics: /$(optenv ROBOT car)/sensors/ladybug_front_image -->
+    <!--                   /$(optenv ROBOT car)/sensors/ladybug_front_right_image -->
+    <!--                   /$(optenv ROBOT car)/sensors/ladybug_rear_right_image -->
+    <!--                   /$(optenv ROBOT car)/sensors/ladybug_rear_left_image -->
+    <!--                   /$(optenv ROBOT car)/sensors/ladybug_front_left_image -->
+    <!--                   /$(optenv ROBOT car)/sensors/ladybug_top_image -->
+    <!-- subscribed topics: -->
+    <!-- service clients: -->
+    <!-- service servers: -->
+    <!-- action clients: -->
+    <!-- action servers: -->
+    <node pkg ="iri_ladybug2"
+          type="iri_ladybug2"
+          name="ladybug_camera"
+          machine="visio"
+          if="$(arg ladybug)"
+          output="screen">
+      <remap from="/$(optenv ROBOT car)/ladybug_camera/front_image"
+               to="/$(optenv ROBOT car)/sensors/ladybug_front_image"/>
+      <remap from="/$(optenv ROBOT car)/ladybug_camera/front_right_image"
+               to="/$(optenv ROBOT car)/sensors/ladybug_front_right_image"/>
+      <remap from="/$(optenv ROBOT car)/ladybug_camera/rear_right_image"
+               to="/$(optenv ROBOT car)/sensors/ladybug_rear_right_image"/>
+      <remap from="/$(optenv ROBOT car)/ladybug_camera/rear_left_image"
+               to="/$(optenv ROBOT car)/sensors/ladybug_rear_left_image"/>
+      <remap from="/$(optenv ROBOT car)/ladybug_camera/front_left_image"
+               to="/$(optenv ROBOT car)/sensors/ladybug_front_left_image"/>
+      <remap from="/$(optenv ROBOT car)/ladybug_camera/top_image"
+               to="/$(optenv ROBOT car)/sensors/ladybug_top_image"/>
+      <param name="Camera_node"        value="0" />
+      <param name="front_id"           value="ladybug_front_frame"       type="string" />
+      <param name="front_right_id"     value="ladybug_front_right_frame" type="string" />
+      <param name="rear_right_id"      value="ladybug_rear_right_frame"  type="string" />
+      <param name="rear_left_id"       value="ladybug_rear_left_frame"   type="string" />
+      <param name="front_left_id"      value="ladybug_front_left_frame"  type="string" />
+      <param name="top_id"             value="ladybug_top_frame"         type="string" />
+      <param name="Framerate"          value="10" />
+    </node>
+
+  </group>
+
+</launch>

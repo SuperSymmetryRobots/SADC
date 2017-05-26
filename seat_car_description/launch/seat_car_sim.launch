@@ -1,0 +1,17 @@
+<!-- -->
+<launch>
+
+  <arg name="demo" default="seat_car"/>
+
+  <include file="$(find seat_car_gazebo)/launch/seat_car_gazebo.launch">
+    <arg name="demo" value="$(arg demo)"/>
+  </include>
+
+  <include file="$(find seat_car_control)/launch/seat_car_control.launch"/>
+
+  <node name="rviz"
+        pkg="rviz"
+        type="rviz"
+        args="-d $(find seat_car_description)/config/seat_car.rviz" />
+
+</launch>

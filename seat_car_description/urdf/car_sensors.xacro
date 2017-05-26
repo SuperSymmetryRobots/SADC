@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+
+<robot name="seat_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Included URDF Files -->
+  <xacro:include filename="$(find seat_car_description)/urdf/car_sensors.gazebo" />
+
+  <link name="sensor_board">
+    <inertial>
+      <mass value="6" />
+      <origin xyz="0.12043628 0.00000000 0.00171950" rpy="0 0 0"/>
+      <inertia ixx="0.0123739" ixy="0.0" ixz="0.0003463"
+               iyy="0.0711051" iyz="0.0" 
+               izz="0.0820107" />
+    </inertial>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/sensor_board.stl" />
+      </geometry>
+      <material name="Grey" />
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/sensor_board.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_link_sensor_board" type="fixed" >
+    <parent link="base_link"/>
+    <child link="sensor_board"/>
+    <origin xyz="0 0 0.0415" rpy="0 0 0"/>
+  </joint>
+
+  <link name="camera_board">
+    <inertial>
+      <mass value="0.6000000" />
+      <origin xyz="0.04901990 0.00000000 0.00000000" rpy="0 0 0"/>
+      <inertia ixx="0.0003816" ixy="0.0" ixz="0.0"
+               iyy="0.0003420" iyz="0.0" 
+               izz="0.0007211" />
+    </inertial>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/camera_board.stl" />
+      </geometry>
+      <material name="Grey" />
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/camera_board.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="sensor_board_camera_board" type="fixed" >
+    <parent link="sensor_board"/>
+    <child link="camera_board"/>
+    <origin xyz="0.109 0 0.105" rpy="0 0 0"/>
+  </joint>
+
+  <!--*************************************************-->
+  <!--*               Sensors                         *-->
+  <!--*************************************************-->
+
+  <!-- IMU -->
+  <link name="imu">
+    <inertial>
+      <mass value="0.0200000" />
+      <origin xyz="0.00000000 0.00000000 0.00150000" rpy="0 0 0"/>
+      <inertia ixx="0.0000007" ixy="0.0" ixz="0.0"
+               iyy="0.0000004" iyz="0.0" 
+               izz="0.0000011" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/IMU.stl" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/IMU.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="sensor_board_imu" type="fixed" >
+    <parent link="sensor_board"/>
+    <child link="imu"/>
+    <origin xyz="0.239 0.02 0.0025" rpy="0 0 1.5707"/>
+  </joint>
+
+  <!-- RP_LIDAR -->
+  <link name="rp_lidar">
+    <inertial>
+      <mass value="1.8362923" />
+      <origin xyz="0.0000000 0.0000000 -0.01040000" rpy="0 0 0"/>
+      <inertia ixx="0.0009124" ixy="0.0" ixz="0.0"
+               iyy="0.0009124" iyz="0.0" 
+               izz="0.0013154" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/RP-LIDAR.stl" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/RP-LIDAR.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="sensor_board_rp_lidar" type="fixed" >
+    <parent link="sensor_board"/>
+    <child link="rp_lidar"/>
+    <origin xyz="0.10445 0 0.0333" rpy="0 0 -3.14159"/>
+  </joint>
+
+  <!-- GPS camera -->
+  <link name="gps_camera">
+    <inertial>
+      <mass value="0.1600000" />
+      <origin xyz="0.00000000 0.00000000 -0.01396703" rpy="0 0 0"/>
+      <inertia ixx="0.0000170" ixy="0.0" ixz="0.0"
+               iyy="0.0000170" iyz="0.0" 
+               izz="0.0000183" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/gps_camera.stl" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/gps_camera.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_board_gps_camera" type="fixed" >
+    <parent link="camera_board"/>
+    <child link="gps_camera"/>
+    <origin xyz="0.019 0 0.0405" rpy="0 0 0"/>
+  </joint>
+
+  <link name="gps_camera_view">
+  </link>
+
+  <joint name="gps_camera_gps_camera_view" type="fixed" >
+    <parent link="gps_camera"/>
+    <child link="gps_camera_view"/>
+    <origin xyz="0.0 0 0.0" rpy="0 -1.5707 0"/>
+  </joint>
+
+  <!-- Creative camera -->
+  <link name="creative_camera">
+    <inertial>
+      <mass value="1.3000000" />
+      <origin xyz="0.00000000 0.00000000 -0.01150000" rpy="0 0 0"/>
+      <inertia ixx="0.0017500" ixy="0.0" ixz="0.0"
+               iyy="0.0001146" iyz="0.0" 
+               izz="0.0017500" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/creative_camera.stl" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://seat_car_description/meshes/creative_camera.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_board_creative_camera" type="fixed" >
+    <parent link="camera_board"/>
+    <child link="creative_camera"/>
+    <origin xyz="0.119 0 0.0" rpy="0 1.5707 0"/>
+  </joint>
+
+  <link name="creative_camera_view">
+  </link>
+
+  <joint name="creative_camera_creative_camera_view" type="fixed" >
+    <parent link="creative_camera"/>
+    <child link="creative_camera_view"/>
+    <origin xyz="0.0 0 0.0" rpy="1.5707 -1.5707 0"/>
+  </joint>
+
+</robot>

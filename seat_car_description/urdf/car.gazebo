@@ -1,0 +1,120 @@
+<?xml version="2.0"?>
+<robot>
+  <gazebo>
+    <static>0</static>
+  </gazebo>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Grey</material>
+    <dampingFactor>0.1</dampingFactor>
+    <mu1>9.000</mu1>
+    <mu2>9.000</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+<!--    <gravity>true</gravity>
+    <selfCollide>false</selfCollide>
+    <maxContacts>10</maxContacts>
+    <maxVel>0.0</maxVel>
+    <minDepth>0.0</minDepth>-->
+  </gazebo>
+
+  <gazebo reference="front_left_wheel_link">
+    <material>Gazebo/Black</material>
+    <dampingFactor>0.1</dampingFactor>
+    <mu1>9.000</mu1>
+    <mu2>9.000</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+<!--    <gravity>true</gravity>
+    <selfCollide>false</selfCollide>
+    <maxContacts>10</maxContacts>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.1.0</minDepth>-->
+  </gazebo>
+
+  <gazebo reference="front_right_wheel_link">
+    <material>Gazebo/Black</material>
+    <dampingFactor>0.1</dampingFactor>
+    <mu1>9.000</mu1>
+    <mu2>9.000</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+<!--    <gravity>true</gravity>
+    <selfCollide>false</selfCollide>
+    <maxContacts>10</maxContacts>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.1.0</minDepth>-->
+  </gazebo>
+
+  <gazebo reference="rear_left_wheel_link">
+    <material>Gazebo/Black</material>
+    <dampingFactor>0.1</dampingFactor>
+    <mu1>9.000</mu1>
+    <mu2>9.000</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+<!--    <gravity>true</gravity>
+    <selfCollide>false</selfCollide>
+    <maxContacts>10</maxContacts>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.1.0</minDepth>-->
+  </gazebo>
+
+  <gazebo reference="rear_right_wheel_link">
+    <material>Gazebo/Black</material>
+    <dampingFactor>0.1</dampingFactor>
+    <mu1>9.000</mu1>
+    <mu2>9.000</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+<!--    <gravity>true</gravity>
+    <selfCollide>false</selfCollide>
+    <maxContacts>10</maxContacts>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.1.0</minDepth>-->
+  </gazebo>
+
+  <gazebo reference="front_left_axel_front_left_wheel_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+<!--    <stopCfm>0.0</stopCfm>
+    <stopErp>0.0</stopErp>-->
+  </gazebo>
+
+  <gazebo reference="front_right_axel_front_right_wheel_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+<!--    <stopCfm>0.0</stopCfm>
+    <stopErp>0.0</stopErp>-->
+  </gazebo>
+
+  <gazebo reference="base_link_rear_left_wheel_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+<!--    <stopCfm>0.0</stopCfm>
+    <stopErp>0.0</stopErp>-->
+  </gazebo>
+
+  <gazebo reference="base_link_rear_right_wheel_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+<!--    <stopCfm>0.0</stopCfm>
+    <stopErp>0.0</stopErp>-->
+  </gazebo>
+
+  <gazebo reference="base_link_front_left_axel_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+<!--    <stopCfm>0.0</stopCfm>
+    <stopErp>0.0</stopErp>-->
+  </gazebo>
+
+  <gazebo reference="base_link_front_right_axel_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+<!--    <stopCfm>0.0</stopCfm>
+    <stopErp>0.0</stopErp>-->
+  </gazebo>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>seat_car</robotNamespace>
+<!--      <controlPeriod>0.02</controlPeriod>-->
+    </plugin>
+  </gazebo>
+
+</robot>
