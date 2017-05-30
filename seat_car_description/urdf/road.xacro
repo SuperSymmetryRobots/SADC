@@ -13,14 +13,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="1 1 0.02"/>
+          <box size="5 5 0.02"/>
         </geometry>
         <material name="green"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="1 1 0.02"/>
+          <box size="5 5 0.02"/>
         </geometry>
       </collision>
     </link>

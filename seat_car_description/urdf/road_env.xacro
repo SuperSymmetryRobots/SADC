@@ -2,7 +2,7 @@
  
   <xacro:include filename="$(find seat_car_description)/urdf/road.xacro" />
 
-  <xacro:road name="road1" size="1.0">
+  <xacro:road name="road1" size="5.0">
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
   </xacro:road>
 </robot>
