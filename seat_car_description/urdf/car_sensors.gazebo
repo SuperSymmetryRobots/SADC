@@ -113,7 +113,7 @@
 
   <gazebo reference="gps_camera_view">
     <sensor type="camera" name="camera1">
-      <update_rate>25.0</update_rate>
+      <update_rate>5.0</update_rate>
       <camera name="gps_camera">
         <horizontal_fov>1.7</horizontal_fov>
         <image>
@@ -172,7 +172,7 @@
       <always_on>1</always_on>
       <visualize>true</visualize>             
       <camera>
-        <horizontal_fov>1.047</horizontal_fov>  
+        <horizontal_fov>1.24</horizontal_fov>  
         <image>
           <width>640</width>
           <height>480</height>
@@ -181,22 +181,27 @@
         <depth_camera>
         </depth_camera>
         <clip>
-          <near>0.1</near>
-          <far>100</far>
+          <near>0.2</near>
+          <far>1.5</far>
         </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
       </camera>
       <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
         <alwaysOn>true</alwaysOn>
-          <updateRate>10.0</updateRate>
-          <cameraName>creative_camera</cameraName>
-          <frameName>/seat_car/creative_camera</frameName>                   
+        <updateRate>1.0</updateRate>
+        <cameraName>creative_camera</cameraName>
+        <frameName>/seat_car/creative_camera</frameName>                   
         <imageTopicName>/seat_car/sensors/rgb/image_raw</imageTopicName>
         <depthImageTopicName>/seat_car/sensors/depth/image_raw</depthImageTopicName>
         <pointCloudTopicName>/seat_car/sensors/depth/points</pointCloudTopicName>
         <cameraInfoTopicName>/seat_car/sensors/rgb/camera_info</cameraInfoTopicName>              
         <depthImageCameraInfoTopicName>/seat_car/sensors/depth/camera_info</depthImageCameraInfoTopicName>            
         <pointCloudCutoff>0.4</pointCloudCutoff>                
-        <hackBaseline>0.07</hackBaseline>
+        <hackBaseline>0.007</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
         <distortionK3>0.0</distortionK3>
@@ -206,6 +211,11 @@
         <Cx>0.0</Cx>
         <Cy>0.0</Cy>
         <focalLength>0.0</focalLength>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
       </plugin>
     </sensor>
   </gazebo>

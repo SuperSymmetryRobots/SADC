@@ -9,6 +9,35 @@
 
   <include file="$(find seat_car_control)/launch/seat_car_control.launch"/>
 
+  <node name="imu_filter"
+        pkg="imu_filter_madgwick"
+        type="imu_filter_node"
+        output="screen"
+        ns="/seat_car">
+    <remap from="/seat_car/imu/data_raw"
+             to="/seat_car/sensors/imu"/>
+    <param name="use_mag" value="false"/>
+    <param name="gain" value="0.1"/>
+    <param name="zeta" value="0.0"/>
+    <param name="mag_bias_x" value="0.0"/>
+    <param name="mag_bias_y" value="0.0"/>
+    <param name="mag_bias_z" value="0.0"/>
+    <param name="orientation_stddev" value="0.0"/>
+    <param name="world_frame" value="nwu"/>
+    <param name="use_magnetic_field_msg" value="false"/>
+    <param name="fixed_frame" value="/seat_car/imu"/>
+    <param name="publish_tf" value="false"/>
+    <param name="reverse_tf" value="false"/>
+    <param name="constant_dt" value="0.0"/>
+    <param name="publish_debug_topics" value="false"/>
+    <param name="stateless" value="false"/>
+  </node>
+
+  <param name="road_description" command="$(find xacro)/xacro.py '$(find seat_car_description)/urdf/road_env.xacro'" />
+
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_road" pkg="gazebo_ros" type="spawn_model" args="-param road_description -urdf -model road -x 0 -y 0 -z 0.02 -R 0 -P 0 -Y 0 "/>
+
   <node name="rviz"
         pkg="rviz"
         type="rviz"

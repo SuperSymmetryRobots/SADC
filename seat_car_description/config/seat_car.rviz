@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /TF1/Frames1
+        - /RP_Lidar1
         - /Imu1/Box properties1
         - /SR300_image1
       Splitter Ratio: 0.5
@@ -227,7 +228,7 @@ Visualization Manager:
       Max Color: 255; 255; 255
       Max Intensity: 0
       Min Color: 0; 0; 0
-      Min Intensity: 0
+      Min Intensity: -999999
       Name: RP_Lidar
       Position Transformer: XYZ
       Queue Size: 10
@@ -235,7 +236,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.01
       Style: Points
-      Topic: /scan
+      Topic: /seat_car/sensors/scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -340,22 +341,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.47696
+      Distance: 1.24398
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.418061
-        Y: 1.07256
-        Z: 0.136944
+        X: -0.706442
+        Y: 0.575652
+        Z: 0.984074
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.2198
+      Pitch: 0.464796
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.4404
+      Yaw: 2.6404
     Saved: ~
 Window Geometry:
   Displays:

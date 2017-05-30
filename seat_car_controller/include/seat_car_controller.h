@@ -16,6 +16,7 @@
 #include <std_msgs/Int16.h>
 #include <std_msgs/Float32.h>
 #include <geometry_msgs/Twist.h>
+#include <sensor_msgs/Imu.h>
 
 // URDF
 #include <urdf/model.h>
@@ -51,6 +52,9 @@ namespace seat_car_controller
       void speed_callback(const std_msgs::Int16::ConstPtr& msg);
       ros::Subscriber stop_sub;
       void stop_callback(const std_msgs::Int16::ConstPtr& msg);
+      ros::Subscriber imu_sub;
+      void imu_callback(const sensor_msgs::Imu::ConstPtr& msg);
+      double yaw;
       ros::Publisher yaw_pub;
       ros::Publisher revolutions_pub;
       ros::Publisher twist_pub;

@@ -4,7 +4,7 @@ project(seat_car_controller)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED cmake_modules roscpp urdf controller_interface hardware_interface control_toolbox controller_manager xacro geometry_msgs nav_msgs std_msgs tf) 
+find_package(catkin REQUIRED cmake_modules roscpp urdf controller_interface hardware_interface control_toolbox controller_manager xacro geometry_msgs nav_msgs std_msgs sensor_msgs tf) 
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -78,7 +78,7 @@ find_package(catkin REQUIRED cmake_modules roscpp urdf controller_interface hard
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
-  CATKIN_DEPENDS roscpp urdf controller_interface hardware_interface control_toolbox controller_manager xacro geometry_msgs nav_msgs std_msgs tf gazebo_ros_control joint_state_controller
+  CATKIN_DEPENDS roscpp urdf controller_interface hardware_interface control_toolbox controller_manager xacro geometry_msgs nav_msgs std_msgs sensor_msgs tf gazebo_ros_control joint_state_controller
 #  DEPENDS system_lib
 )
 

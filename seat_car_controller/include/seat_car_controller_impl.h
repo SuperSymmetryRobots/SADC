@@ -4,6 +4,7 @@
 #include <limits>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <tf/tf.h>
 
 namespace seat_car_controller
 {
@@ -238,6 +239,7 @@ namespace seat_car_controller
       this->steering_sub = root_nh.subscribe(this->steering_topic, 1, &SeatCarController<HardwareInterface>::steering_callback,this);
       this->speed_sub = root_nh.subscribe(this->speed_topic, 1, &SeatCarController<HardwareInterface>::speed_callback,this);
       this->stop_sub = root_nh.subscribe(this->stop_topic, 1, &SeatCarController<HardwareInterface>::stop_callback,this);
+      this->imu_sub = root_nh.subscribe("/seat_car/imu/data", 1, &SeatCarController<HardwareInterface>::imu_callback,this);
 
       ROS_DEBUG_STREAM_NAMED(name_, "Initialized controller '" << name_ << "' with:" <<
 	  "\n- Number of joints: " << joints_.size() <<
@@ -345,6 +347,9 @@ namespace seat_car_controller
       twist_msg.linear.y=0.0;
       twist_msg.linear.z=0.0;
       this->twist_pub.publish(twist_msg);
+
+      yaw_msg.data=this->yaw;
+      this->yaw_pub.publish(yaw_msg); 
     }
 
   template <class HardwareInterface>
@@ -424,6 +429,12 @@ namespace seat_car_controller
       // left outer
       this->rear_left_cmd=0.0;
       this->last_cmd_drive=0.0;
+    }
+
+  template <class HardwareInterface>
+    void SeatCarController<HardwareInterface>::imu_callback(const sensor_msgs::Imu::ConstPtr& msg)
+    {
+      this->yaw=tf::getYaw(msg->orientation);
     }
 
 } // namespace
