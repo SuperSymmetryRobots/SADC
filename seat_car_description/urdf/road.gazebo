@@ -1,0 +1,12 @@
+<?xml version="2.0"?>
+<robot>
+    
+  <gazebo reference="road_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="road_image">
+  </gazebo>
+
+</robot>
+

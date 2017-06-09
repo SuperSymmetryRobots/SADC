@@ -98,7 +98,7 @@
   </joint>
 
   <!-- RP_LIDAR -->
-  <link name="rp_lidar">
+  <link name="laser">
     <inertial>
       <mass value="1.8362923" />
       <origin xyz="0.0000000 0.0000000 -0.01040000" rpy="0 0 0"/>
@@ -121,9 +121,9 @@
     </collision>
   </link>
 
-  <joint name="sensor_board_rp_lidar" type="fixed" >
+  <joint name="sensor_board_laser" type="fixed" >
     <parent link="sensor_board"/>
-    <child link="rp_lidar"/>
+    <child link="laser"/>
     <origin xyz="0.10445 0 0.0333" rpy="0 0 -3.14159"/>
   </joint>
 
@@ -157,17 +157,17 @@
     <origin xyz="0.019 0 0.0405" rpy="0 0 0"/>
   </joint>
 
-  <link name="gps_camera_view">
+  <link name="gps_camera_optical">
   </link>
 
-  <joint name="gps_camera_gps_camera_view" type="fixed" >
+  <joint name="gps_camera_gps_camera_optical" type="fixed" >
     <parent link="gps_camera"/>
-    <child link="gps_camera_view"/>
+    <child link="gps_camera_optical"/>
     <origin xyz="0.0 0 0.0" rpy="0 -1.5707 0"/>
   </joint>
 
   <!-- Creative camera -->
-  <link name="creative_camera">
+  <link name="camera_link">
     <inertial>
       <mass value="1.3000000" />
       <origin xyz="0.00000000 0.00000000 -0.01150000" rpy="0 0 0"/>
@@ -190,18 +190,45 @@
     </collision>
   </link>
 
-  <joint name="camera_board_creative_camera" type="fixed" >
+  <joint name="camera_board_camera_link" type="fixed" >
     <parent link="camera_board"/>
-    <child link="creative_camera"/>
+    <child link="camera_link"/>
     <origin xyz="0.119 0 0.0" rpy="0 1.5707 0"/>
   </joint>
 
-  <link name="creative_camera_view">
+  <link name="camera_rgb_frame">
   </link>
 
-  <joint name="creative_camera_creative_camera_view" type="fixed" >
-    <parent link="creative_camera"/>
-    <child link="creative_camera_view"/>
+  <joint name="camera_link_camera_rgb_frame" type="fixed" >
+    <parent link="camera_link"/>
+    <child link="camera_rgb_frame"/>
+    <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="camera_depth_frame">
+  </link>
+
+  <joint name="camera_link_camera_depth_frame" type="fixed" >
+    <parent link="camera_link"/>
+    <child link="camera_depth_frame"/>
+    <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="camera_rgb_optical_frame">
+  </link>
+
+  <joint name="camera_link_camera_rgb_optical_frame" type="fixed" >
+    <parent link="camera_link"/>
+    <child link="camera_rgb_optical_frame"/>
+    <origin xyz="0.0 0 0.0" rpy="1.5707 -1.5707 0"/>
+  </joint>
+
+  <link name="camera_depth_optical_frame">
+  </link>
+
+  <joint name="camera_link_camera_depth_optical_frame" type="fixed" >
+    <parent link="camera_link"/>
+    <child link="camera_depth_optical_frame"/>
     <origin xyz="0.0 0 0.0" rpy="1.5707 -1.5707 0"/>
   </joint>
 

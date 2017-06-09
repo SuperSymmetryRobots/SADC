@@ -6,9 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /TF1/Frames1
-        - /RP_Lidar1
         - /Imu1/Box properties1
-        - /SR300_image1
       Splitter Ratio: 0.5
     Tree Height: 376
   - Class: rviz/Selection
@@ -56,37 +54,43 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        seat_car/base_footprint:
+        base_link:
           Value: true
-        seat_car/base_link:
+        camera_board:
           Value: true
-        seat_car/camera_board:
+        camera_depth_frame:
           Value: true
-        seat_car/creative_camera:
+        camera_depth_optical_frame:
           Value: true
-        seat_car/creative_camera_view:
+        camera_link:
           Value: true
-        seat_car/front_left_axel_link:
+        camera_rgb_frame:
           Value: true
-        seat_car/front_left_wheel_link:
+        camera_rgb_optical_frame:
           Value: true
-        seat_car/front_right_axel_link:
+        front_left_axel_link:
           Value: true
-        seat_car/front_right_wheel_link:
+        front_left_wheel_link:
           Value: true
-        seat_car/gps_camera:
+        front_right_axel_link:
           Value: true
-        seat_car/gps_camera_view:
+        front_right_wheel_link:
           Value: true
-        seat_car/imu:
+        gps_camera:
           Value: true
-        seat_car/rear_left_wheel_link:
+        gps_camera_optical:
           Value: true
-        seat_car/rear_right_wheel_link:
+        imu:
           Value: true
-        seat_car/rp_lidar:
+        laser:
           Value: true
-        seat_car/sensor_board:
+        odom:
+          Value: true
+        rear_left_wheel_link:
+          Value: true
+        rear_right_wheel_link:
+          Value: true
+        sensor_board:
           Value: true
       Marker Scale: 0.3
       Name: TF
@@ -94,30 +98,37 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        seat_car/base_footprint:
-          seat_car/base_link:
-            seat_car/front_left_axel_link:
-              seat_car/front_left_wheel_link:
-                {}
-            seat_car/front_right_axel_link:
-              seat_car/front_right_wheel_link:
-                {}
-            seat_car/rear_left_wheel_link:
+        base_link:
+          front_left_axel_link:
+            front_left_wheel_link:
               {}
-            seat_car/rear_right_wheel_link:
+          front_right_axel_link:
+            front_right_wheel_link:
               {}
-            seat_car/sensor_board:
-              seat_car/camera_board:
-                seat_car/creative_camera:
-                  seat_car/creative_camera_view:
-                    {}
-                seat_car/gps_camera:
-                  seat_car/gps_camera_view:
-                    {}
-              seat_car/imu:
-                {}
-              seat_car/rp_lidar:
-                {}
+          rear_left_wheel_link:
+            {}
+          rear_right_wheel_link:
+            {}
+          sensor_board:
+            camera_board:
+              camera_link:
+                camera_depth_frame:
+                  {}
+                camera_depth_optical_frame:
+                  {}
+                camera_rgb_frame:
+                  {}
+                camera_rgb_optical_frame:
+                  {}
+              gps_camera:
+                gps_camera_optical:
+                  {}
+            imu:
+              {}
+            laser:
+              {}
+        odom:
+          {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -130,10 +141,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base_footprint:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         base_link:
           Alpha: 1
           Show Axes: false
@@ -144,12 +151,24 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        creative_camera:
+        camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        creative_camera_view:
+        camera_rgb_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_rgb_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -176,11 +195,16 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        gps_camera_view:
+        gps_camera_optical:
           Alpha: 1
           Show Axes: false
           Show Trail: false
         imu:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        laser:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -195,11 +219,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        rp_lidar:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         sensor_board:
           Alpha: 1
           Show Axes: false
@@ -207,7 +226,7 @@ Visualization Manager:
           Value: true
       Name: RobotModel
       Robot Description: robot_description
-      TF Prefix: seat_car
+      TF Prefix: ""
       Update Interval: 0
       Value: true
       Visual Enabled: true
@@ -228,7 +247,7 @@ Visualization Manager:
       Max Color: 255; 255; 255
       Max Intensity: 0
       Min Color: 0; 0; 0
-      Min Intensity: -999999
+      Min Intensity: 0
       Name: RP_Lidar
       Position Transformer: XYZ
       Queue Size: 10
@@ -236,7 +255,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.01
       Style: Points
-      Topic: /seat_car/sensors/scan
+      Topic: /scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -260,7 +279,7 @@ Visualization Manager:
       Class: rviz_imu_plugin/Imu
       Enabled: true
       Name: Imu
-      Topic: /seat_car/sensors/imu
+      Topic: /imu
       Unreliable: false
       Value: true
     - Alpha: 1
@@ -288,14 +307,14 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.01
       Style: Points
-      Topic: /seat_car/sensors/depth/points
+      Topic: /app/camera/depth/points
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /seat_car/sensors/image_raw
+      Image Topic: /usb_cam/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -307,7 +326,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /seat_car/sensors/rgb/image_raw
+      Image Topic: /app/camera/rgb/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -320,7 +339,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: seat_car/base_footprint
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
@@ -348,15 +367,15 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.706442
-        Y: 0.575652
-        Z: 0.984074
+        X: -0.722928
+        Y: 0.703631
+        Z: 0.832612
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.464796
+      Pitch: 0.324796
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.6404
+      Yaw: 2.6004
     Saved: ~
 Window Geometry:
   Displays:

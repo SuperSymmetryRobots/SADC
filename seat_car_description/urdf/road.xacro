@@ -2,6 +2,8 @@
 
 <root xmlns:xacro="http://ros.org/wiki/xacro">
 
+  <xacro:include filename="$(find seat_car_description)/urdf/road.gazebo" />
+
   <xacro:macro name="road" params="name size *origin">
     <!-- obstacle -->
     <link name="road_link">
@@ -13,14 +15,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="5 5 0.02"/>
+          <box size="10 10 0.02"/>
         </geometry>
         <material name="green"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="5 5 0.02"/>
+          <box size="10 10 0.02"/>
         </geometry>
       </collision>
     </link>
@@ -50,12 +52,6 @@
         </geometry>
       </collision>
     </link>
-
-    <gazebo reference="road_link">
-    </gazebo>
-
-    <gazebo reference="road_image">
-    </gazebo>
 
   </xacro:macro>
 </root>

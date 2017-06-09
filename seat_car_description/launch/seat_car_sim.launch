@@ -12,10 +12,9 @@
   <node name="imu_filter"
         pkg="imu_filter_madgwick"
         type="imu_filter_node"
-        output="screen"
-        ns="/seat_car">
-    <remap from="/seat_car/imu/data_raw"
-             to="/seat_car/sensors/imu"/>
+        output="screen">
+    <remap from="/imu/data_raw"
+             to="/imu"/>
     <param name="use_mag" value="false"/>
     <param name="gain" value="0.1"/>
     <param name="zeta" value="0.0"/>
@@ -36,7 +35,17 @@
   <param name="road_description" command="$(find xacro)/xacro.py '$(find seat_car_description)/urdf/road_env.xacro'" />
 
   <!-- Spawn a robot into Gazebo -->
-  <node name="spawn_road" pkg="gazebo_ros" type="spawn_model" args="-param road_description -urdf -model road -x 0 -y 0 -z 0.02 -R 0 -P 0 -Y 0 "/>
+  <node name="spawn_road" pkg="gazebo_ros" type="spawn_model" args="-param road_description -urdf -model road -x 0 -y 0 -z 0.01 -R 0 -P 0 -Y 0 "/>
+
+  <node pkg="odometry" 
+        type="odometry_publisher" 
+        name="odometry_publisher"
+        output="screen">
+    <remap from="/motor_control/twist"
+             to="/model_car/twist"/>
+    <remap from="/model_car/yaw"
+             to="/model_car/yaw"/>
+  </node>
 
   <node name="rviz"
         pkg="rviz"

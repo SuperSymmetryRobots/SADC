@@ -8,22 +8,6 @@
 
   <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin,
        navigation stack depends on this frame -->
-  <link name="base_footprint">
-    <inertial>
-      <mass value="0.001" />
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <inertia ixx="0.00001" ixy="0.0" ixz="0.0"
-               iyy="0.00001" iyz="0.0" 
-               izz="0.00001" />
-    </inertial>
-  </link>
-
-  <joint name="base_footprint2base_link" type="fixed">
-    <origin xyz="0 0 0.032" rpy="0 0 0" />
-    <parent link="base_footprint"/>
-    <child link="base_link" />
-  </joint>
-
   <link name="base_link">
     <inertial>
       <mass value="6" />
@@ -53,8 +37,7 @@
     <anchor xyz="0 0 0" />
     <parent link="base_link" />
     <child link="rear_left_wheel_link" />
-    <limit lower="-1000000000000.0" upper="1000000000000.0" effort="0.92" velocity="124"/>
-    <dynamics damping="0.1"/>
+    <limit lower="-1000000000000.0" upper="1000000000000.0" effort="3.0" velocity="124"/>
   </joint>
 
   <transmission name="tran_rear_left">
@@ -97,8 +80,7 @@
     <anchor xyz="0 0 0" />
     <parent link="base_link" />
     <child link="rear_right_wheel_link" />
-    <limit lower="-1000000000000.0" upper="1000000000000.0" effort="0.92" velocity="124"/>
-    <dynamics damping="0.1"/>
+    <limit lower="-1000000000000.0" upper="1000000000000.0" effort="3.0" velocity="124"/>
   </joint>
 
   <transmission name="tran_rear_right">
@@ -172,8 +154,7 @@
     <anchor xyz="0 0 0" />
     <parent link="front_left_axel_link" />
     <child link="front_left_wheel_link" />
-    <limit lower="-1000000000000.0" upper="1000000000000.0" effort="0.92" velocity="124"/>
-    <dynamics damping="0.1"/>
+    <limit lower="-1000000000000.0" upper="1000000000000.0" effort="3.0" velocity="124"/>
   </joint>
 
   <transmission name="tran_front_left_wheel">
@@ -247,8 +228,7 @@
     <anchor xyz="0 0 0" />
     <parent link="front_right_axel_link" />
     <child link="front_right_wheel_link" />
-    <limit lower="-1000000000000.0" upper="1000000000000.0" effort="0.92" velocity="124"/>
-    <dynamics damping="0.1"/>
+    <limit lower="-1000000000000.0" upper="1000000000000.0" effort="3.0" velocity="124"/>
   </joint>
 
   <transmission name="tran_front_right_wheel">
