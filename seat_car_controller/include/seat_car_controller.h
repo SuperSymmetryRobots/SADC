@@ -54,7 +54,7 @@ namespace seat_car_controller
       void stop_callback(const std_msgs::Int16::ConstPtr& msg);
       ros::Subscriber imu_sub;
       void imu_callback(const sensor_msgs::Imu::ConstPtr& msg);
-      double yaw;
+      double heading;
       ros::Publisher yaw_pub;
       ros::Publisher revolutions_pub;
       ros::Publisher twist_pub;

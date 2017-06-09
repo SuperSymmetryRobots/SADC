@@ -211,27 +211,27 @@ namespace seat_car_controller
       controller_nh_.getParam("zero_steer_angle", this->zero_steer_angle);
       ROS_DEBUG_STREAM_NAMED(name_, "Zero steer angle set to: " << this->zero_steer_angle);
 
-      this->steering_topic="manual_control/steering";
+      this->steering_topic="/manual_control/steering";
       controller_nh_.getParam("steering_topic", this->steering_topic);
       ROS_DEBUG_STREAM_NAMED(name_, "Steering topic set to: " << this->steering_topic);
 
-      this->speed_topic="manual_control/speed";
+      this->speed_topic="/manual_control/speed";
       controller_nh_.getParam("speed_topic", this->speed_topic);
       ROS_DEBUG_STREAM_NAMED(name_, "Speed topic set to: " << this->speed_topic);
 
-      this->stop_topic="manual_control/stop";
+      this->stop_topic="/manual_control/stop";
       controller_nh_.getParam("stop_topic", this->stop_topic);
       ROS_DEBUG_STREAM_NAMED(name_, "Stop topic set to: " << this->stop_topic);
 
-      this->yaw_topic="model_car/yaw";
+      this->yaw_topic="/model_car/yaw";
       controller_nh_.getParam("yaw_topic", this->yaw_topic);
       ROS_DEBUG_STREAM_NAMED(name_, "Yaw topic set to: " << this->yaw_topic);
 
-      this->revolutions_topic="model_car/revolutions";
+      this->revolutions_topic="/model_car/revolutions";
       controller_nh_.getParam("revolutions_topic", this->revolutions_topic);
       ROS_DEBUG_STREAM_NAMED(name_, "Revolutions topic set to: " << this->revolutions_topic);
 
-      this->twist_topic="model_car/twist";
+      this->twist_topic="/model_car/twist";
       controller_nh_.getParam("twist_topic", this->twist_topic);
       ROS_DEBUG_STREAM_NAMED(name_, "Twist topic set to: " << this->twist_topic);
 
@@ -239,7 +239,7 @@ namespace seat_car_controller
       this->steering_sub = root_nh.subscribe(this->steering_topic, 1, &SeatCarController<HardwareInterface>::steering_callback,this);
       this->speed_sub = root_nh.subscribe(this->speed_topic, 1, &SeatCarController<HardwareInterface>::speed_callback,this);
       this->stop_sub = root_nh.subscribe(this->stop_topic, 1, &SeatCarController<HardwareInterface>::stop_callback,this);
-      this->imu_sub = root_nh.subscribe("/seat_car/imu/data", 1, &SeatCarController<HardwareInterface>::imu_callback,this);
+      this->imu_sub = root_nh.subscribe("/imu/data", 1, &SeatCarController<HardwareInterface>::imu_callback,this);
 
       ROS_DEBUG_STREAM_NAMED(name_, "Initialized controller '" << name_ << "' with:" <<
 	  "\n- Number of joints: " << joints_.size() <<
@@ -251,6 +251,7 @@ namespace seat_car_controller
 
       this->last_cmd_drive=0.0;
       this->last_cmd_steer=0.0;
+      this->heading=0.0;
 
       return true;
     }
@@ -263,7 +264,7 @@ namespace seat_car_controller
       double steer_l_vel,steer_r_vel,drive_r_l_vel,drive_r_r_vel,drive_f_l_vel,drive_f_r_vel;
       static double yaw=0.0;
       static double last_steer_angle=0.0;
-      std_msgs::Float32 revolutions_msg,yaw_msg;
+      std_msgs::Float32 revolutions_msg;
       geometry_msgs::Twist twist_msg;
 
       steer_l_pos=this->joints_[0].getPosition();
@@ -339,17 +340,14 @@ namespace seat_car_controller
       this->joints_[5].setCommand(command);
 
       // compute and publish yaw, revolutions and twist
-      revolutions_msg.data=(((drive_r_l_pos-drive_r_r_pos)/2.0)/6.0);
-      revolutions_msg.data*=6.0/(2.0*3.14159);
+      revolutions_msg.data=-(((drive_r_l_pos-drive_r_r_pos)/2.0)/6.0);
+      revolutions_msg.data/=(2.0*3.14159);
       this->revolutions_pub.publish(revolutions_msg);
 
-      twist_msg.linear.x=(drive_r_l_vel-drive_r_r_vel)/2.0;
+      twist_msg.linear.x=-((drive_r_l_vel-drive_r_r_vel)*5.5)/2.0;
       twist_msg.linear.y=0.0;
       twist_msg.linear.z=0.0;
       this->twist_pub.publish(twist_msg);
-
-      yaw_msg.data=this->yaw;
-      this->yaw_pub.publish(yaw_msg); 
     }
 
   template <class HardwareInterface>
@@ -396,9 +394,9 @@ namespace seat_car_controller
         radius=std::numeric_limits<double>::max();
 
       /* convert input data [-1000 <-> 1000] */
-      motor_voltage=(msg->data/4.0)*5.0/255.0;// cmd*pwm_max_voltage/pwm_number of steps
+      motor_voltage=(-msg->data/4.0)*5.0/255.0;// cmd*pwm_max_voltage/pwm_number of steps
       motor_speed=motor_voltage*1000.0; // motor_voltage*speed_controller conversion factor (1V <-> 1000 rev/min)
-      wheel_speed=motor_speed/6.0; // motor_speed / gear_ratio of the car
+      wheel_speed=motor_speed/5.5; // motor_speed / gear_ratio of the car
       linear_speed=wheel_speed*3.13159*this->wheel_diameter/60.0; // linear speed in m/s
 
       std::cout << msg->data << "," << motor_voltage << "," << motor_speed << "," << wheel_speed << "," << linear_speed << std::endl;
@@ -434,7 +432,11 @@ namespace seat_car_controller
   template <class HardwareInterface>
     void SeatCarController<HardwareInterface>::imu_callback(const sensor_msgs::Imu::ConstPtr& msg)
     {
-      this->yaw=tf::getYaw(msg->orientation);
+      std_msgs::Float32 yaw_msg;
+ 
+      this->heading=tf::getYaw(msg->orientation);
+      yaw_msg.data=this->heading*180.0/3.14159;
+      this->yaw_pub.publish(yaw_msg); 
     }
 
 } // namespace
