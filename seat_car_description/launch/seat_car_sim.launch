@@ -47,6 +47,44 @@
              to="/model_car/yaw"/>
   </node>
 
+  <node name="image_proc" 
+        pkg="image_proc" 
+        type="image_proc" 
+        ns="usb_cam" 
+        required="true">
+  </node>
+
+  <node name="cmvision" 
+        pkg="cmvision" 
+        type="cmvision" 
+        output="screen" 
+        required="true">
+    <remap from="image" to="usb_cam/image_rect_color" />
+    <param name="color_file" value="$(find detect_roof_rectangles)/colors.txt" />
+    <param name="mean_shift_on" value="true" />
+    <param name="color_radius_pix" value="0" />
+    <param name="spatial_radius_pix" value="0" />
+    <param name="debug_on" value="false" />
+  </node>
+  
+  <node pkg="detect_roof_rectangles" 
+        type="detect" 
+        name="detect"
+        output="screen"/>
+
+  <node pkg="visual_gps" 
+        type="visual_gps_2d_node" 
+        name="visual_gps_2d" 
+        output="screen"
+        args="0 1 2">
+    <param name="map_file" value="$(find visual_gps)/config/FEATURE_FILES/map.txt" />
+    <param name="camera_file" value="$(find visual_gps)/config/FEATURE_FILES/camera.txt" />
+    <param name="start_frame" value="/world" />
+    <param name="end_frame" value="/camera"/>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="ftsensor_FRAME" args="0 0 0 0 0 0 /world /Features_markers 500" />
+
   <node name="rviz"
         pkg="rviz"
         type="rviz"

@@ -73,22 +73,22 @@
   </gazebo>
 
   <!-- GPS camera -->
-  <gazebo reference="gps_camera">
+  <gazebo reference="camera">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="gps_camera_optical">
+  <gazebo reference="camera_optical">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="gps_camera_optical">
-    <sensor type="camera" name="gps_camera">
+  <gazebo reference="camera_optical">
+    <sensor type="camera" name="camera">
       <update_rate>5.0</update_rate>
-      <camera name="gps_camera">
-        <horizontal_fov>1.7</horizontal_fov>
+      <camera name="camera">
+        <horizontal_fov>2.96</horizontal_fov>
         <image>
-          <width>1920</width>
-          <height>1080</height>
+          <width>640</width>
+          <height>480</height>
           <format>R8G8B8</format>
         </image>
         <clip>
@@ -104,7 +104,7 @@
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>25.0</updateRate>
-        <cameraName>gps_camera</cameraName>
+        <cameraName>camera</cameraName>
         <imageTopicName>/usb_cam/image_raw</imageTopicName>
         <cameraInfoTopicName>/usb_cam/camera_info</cameraInfoTopicName>
         <frameName>usb_cam</frameName>

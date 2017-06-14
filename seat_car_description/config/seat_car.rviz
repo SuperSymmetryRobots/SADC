@@ -5,8 +5,12 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
+        - /TF1/Status1
         - /TF1/Frames1
         - /Imu1/Box properties1
+        - /MarkerArray1
+        - /MarkerArray1/Status1
+        - /MarkerArray1/Namespaces1
       Splitter Ratio: 0.5
     Tree Height: 376
   - Class: rviz/Selection
@@ -54,7 +58,11 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        Features_markers:
+          Value: true
         base_link:
+          Value: true
+        camera:
           Value: true
         camera_board:
           Value: true
@@ -63,6 +71,8 @@ Visualization Manager:
         camera_depth_optical_frame:
           Value: true
         camera_link:
+          Value: true
+        camera_optical:
           Value: true
         camera_rgb_frame:
           Value: true
@@ -76,10 +86,6 @@ Visualization Manager:
           Value: true
         front_right_wheel_link:
           Value: true
-        gps_camera:
-          Value: true
-        gps_camera_optical:
-          Value: true
         imu:
           Value: true
         laser:
@@ -92,43 +98,47 @@ Visualization Manager:
           Value: true
         sensor_board:
           Value: true
+        world:
+          Value: true
       Marker Scale: 0.3
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        base_link:
-          front_left_axel_link:
-            front_left_wheel_link:
-              {}
-          front_right_axel_link:
-            front_right_wheel_link:
-              {}
-          rear_left_wheel_link:
-            {}
-          rear_right_wheel_link:
-            {}
-          sensor_board:
-            camera_board:
-              camera_link:
-                camera_depth_frame:
-                  {}
-                camera_depth_optical_frame:
-                  {}
-                camera_rgb_frame:
-                  {}
-                camera_rgb_optical_frame:
-                  {}
-              gps_camera:
-                gps_camera_optical:
-                  {}
-            imu:
-              {}
-            laser:
-              {}
         odom:
-          {}
+          base_link:
+            front_left_axel_link:
+              front_left_wheel_link:
+                {}
+            front_right_axel_link:
+              front_right_wheel_link:
+                {}
+            rear_left_wheel_link:
+              {}
+            rear_right_wheel_link:
+              {}
+            sensor_board:
+              camera_board:
+                camera:
+                  camera_optical:
+                    {}
+                camera_link:
+                  camera_depth_frame:
+                    {}
+                  camera_depth_optical_frame:
+                    {}
+                  camera_rgb_frame:
+                    {}
+                  camera_rgb_optical_frame:
+                    {}
+              imu:
+                {}
+              laser:
+                {}
+        world:
+          Features_markers:
+            {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -146,6 +156,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        camera:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         camera_board:
           Alpha: 1
           Show Axes: false
@@ -164,6 +179,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        camera_optical:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         camera_rgb_frame:
           Alpha: 1
           Show Axes: false
@@ -190,15 +209,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        gps_camera:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gps_camera_optical:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         imu:
           Alpha: 1
           Show Axes: false
@@ -282,6 +292,7 @@ Visualization Manager:
       Topic: /imu
       Unreliable: false
       Value: true
+      fixed_frame_orientation: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -336,6 +347,14 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /Features_markers
+      Name: MarkerArray
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -360,22 +379,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.24398
+      Distance: 10
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.722928
-        Y: 0.703631
-        Z: 0.832612
+        X: 0
+        Y: 0
+        Z: 0
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.324796
+      Pitch: 0.785398
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.6004
+      Yaw: 0.785398
     Saved: ~
 Window Geometry:
   Displays:
