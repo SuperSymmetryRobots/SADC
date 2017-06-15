@@ -10,7 +10,7 @@
         respawn="false"
         output="screen"
         ns="seat_car"
-        args="joint_state_controller car_cont"/>
+        args="joint_state_controller car_cont --shutdown-timeout 1"/>
 
 </launch>
 
