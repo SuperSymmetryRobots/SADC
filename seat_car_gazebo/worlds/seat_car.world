@@ -19,7 +19,7 @@
     <include>
       <uri>model://sun</uri>
     </include>
-    
+<!--    
     <scene>
       <sky>
         <clouds>
@@ -27,7 +27,7 @@
         </clouds>
       </sky>
     </scene>
-
+-->
     <!--
     <model name='box1'>
       <pose>4 0 0.5 0 0 0</pose>

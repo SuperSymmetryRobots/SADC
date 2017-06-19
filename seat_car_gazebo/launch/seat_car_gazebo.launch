@@ -1,3 +1,4 @@
+<!-- -->
 <launch>
 
   <arg name="demo" default="seat_car"/>
@@ -17,7 +18,11 @@
   <include file="$(find seat_car_description)/launch/seat_car_description.launch"/>
 
   <!-- Spawn a robot into Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model seat_car -x $(arg x) -y $(arg y) -z 0.04 -R 0 -P 0 -Y $(arg yaw) "/>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+        args="-param robot_description -urdf -model seat_car -x $(arg x) -y $(arg y) -z 0.04 -R 0 -P 0 -Y $(arg yaw) "/>
+  
+  <node name="car_world_tf" pkg="tf" type="static_transform_publisher"
+        args="$(arg x) $(arg y) 0.04 $(arg yaw) 0 0 world odom 100"/>
 
 </launch>
 
