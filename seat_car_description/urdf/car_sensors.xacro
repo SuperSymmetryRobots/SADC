@@ -4,6 +4,8 @@
 
   <!-- Included URDF Files -->
   <xacro:include filename="$(find seat_car_description)/urdf/car_sensors.gazebo" />
+  
+  <xacro:property name="PI" value="3.1415926535897931" />
 
   <link name="sensor_board">
     <inertial>
@@ -94,7 +96,7 @@
   <joint name="sensor_board_imu" type="fixed" >
     <parent link="sensor_board"/>
     <child link="imu"/>
-    <origin xyz="0.239 0.02 0.0025" rpy="0 0 1.5707"/>
+    <origin xyz="0.239 0.02 0.0025" rpy="0 0 ${PI/2}"/>
   </joint>
 
   <!-- RP_LIDAR -->
@@ -124,7 +126,7 @@
   <joint name="sensor_board_laser" type="fixed" >
     <parent link="sensor_board"/>
     <child link="laser"/>
-    <origin xyz="0.10445 0 0.0333" rpy="0 0 -3.14159"/>
+    <origin xyz="0.10445 0 0.0333" rpy="0 0 -${PI}"/>
   </joint>
 
   <!-- GPS camera -->
@@ -163,7 +165,7 @@
   <joint name="camera_camera_optical" type="fixed" >
     <parent link="camera"/>
     <child link="camera_optical"/>
-    <origin xyz="0.0 0 0.0" rpy="0 -1.5707 0"/>
+    <origin xyz="0.0 0 0.0" rpy="0 -${PI/2} 0"/>
   </joint>
 
   <!-- Creative camera -->
@@ -193,7 +195,7 @@
   <joint name="camera_board_camera_link" type="fixed" >
     <parent link="camera_board"/>
     <child link="camera_link"/>
-    <origin xyz="0.119 0 0.0" rpy="0 1.5707 0"/>
+    <origin xyz="0.119 0 0.0" rpy="0 ${PI/2} 0"/>
   </joint>
 
   <link name="camera_rgb_frame">
@@ -220,7 +222,7 @@
   <joint name="camera_link_camera_rgb_optical_frame" type="fixed" >
     <parent link="camera_link"/>
     <child link="camera_rgb_optical_frame"/>
-    <origin xyz="0.0 0 0.0" rpy="1.5707 -1.5707 0"/>
+    <origin xyz="0.0 0 0.0" rpy="${PI/2} -${PI/2} 0"/>
   </joint>
 
   <link name="camera_depth_optical_frame">
@@ -229,7 +231,25 @@
   <joint name="camera_link_camera_depth_optical_frame" type="fixed" >
     <parent link="camera_link"/>
     <child link="camera_depth_optical_frame"/>
-    <origin xyz="0.0 0 0.0" rpy="1.5707 -1.5707 0"/>
+    <origin xyz="0.0 0 0.0" rpy="${PI/2} -${PI/2} 0"/>
+  </joint>
+
+  <link name="camera_link2">
+  </link>
+ 
+  <joint name="camera_board_camera_link2" type="fixed" >
+    <parent link="camera_board"/>
+    <child link="camera_link2"/>
+    <origin xyz="0.119 0 0.0" rpy="0 0 0"/>
+  </joint>
+  
+  <link name="camera_rgb_optical_frame2">
+  </link>
+
+  <joint name="camera_link_camera_rgb_optical_frame2" type="fixed" >
+    <parent link="camera_link2"/>
+    <child link="camera_rgb_optical_frame2"/>
+    <origin xyz="0 0 0" rpy="-${PI/2} 0 -${PI/2}"/>
   </joint>
 
 </robot>

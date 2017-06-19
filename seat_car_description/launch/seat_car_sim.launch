@@ -3,8 +3,8 @@
 
   <arg name="demo" default="seat_car"/>
   <arg name="gazebo_gui" default="True"/>
-  <arg name="car_x"    default="-0.5"/>
-  <arg name="car_y"    default="2.5"/>
+  <arg name="car_x"    default="0.0"/>
+  <arg name="car_y"    default="0.0"/>
   <arg name="car_yaw"  default="0.0"/>
 
   <include file="$(find seat_car_gazebo)/launch/seat_car_gazebo.launch">
@@ -40,10 +40,20 @@
     <param name="stateless" value="false"/>
   </node>
 
+  <!-- spawn road -->
+  <!--
   <param name="road_description" command="$(find xacro)/xacro.py '$(find seat_car_description)/urdf/road_env.xacro'" />
-
-  <!-- Spawn a robot into Gazebo -->
-  <node name="spawn_road" pkg="gazebo_ros" type="spawn_model" args="-param road_description -urdf -model road -x 0 -y 0 -z 0.01 -R 0 -P 0 -Y 0 "/>
+  <node pkg="robot_state_publisher" type="state_publisher" name="road_tf_broadcaster">
+    <param name="publish_frequency" type="double" value="50.0"/>
+    <remap from="/joint_states" to="/road/joint_states" />
+    <remap from="robot_description" to="road_description" />
+  </node>
+  
+  <node name="spawn_road" pkg="gazebo_ros" type="spawn_model" args="-param road_description -urdf -model road -x 0 -y 0 -z 0.0 -R 0 -P 0 -Y 0 "/>
+  
+  <node name="road_tf" pkg="tf" type="static_transform_publisher"
+        args="0 0 0 0 0 0 world road1_link 100"/>
+  -->
 
   <node pkg="odometry" 
         type="odometry_publisher" 
@@ -55,44 +65,10 @@
              to="/model_car/yaw"/>
   </node>
 
-  <node name="image_proc" 
-        pkg="image_proc" 
-        type="image_proc" 
-        ns="usb_cam" 
-        required="true">
-  </node>
-
-  <node name="cmvision" 
-        pkg="cmvision" 
-        type="cmvision" 
-        output="screen" 
-        required="true">
-    <remap from="image" to="usb_cam/image_rect_color" />
-    <param name="color_file" value="$(find detect_roof_rectangles)/colors.txt" />
-    <param name="mean_shift_on" value="true" />
-    <param name="color_radius_pix" value="0" />
-    <param name="spatial_radius_pix" value="0" />
-    <param name="debug_on" value="false" />
-  </node>
+  <!--
+  <include file="$(find seat_car_description)/launch/gps.launch"/>
+  -->
   
-  <node pkg="detect_roof_rectangles" 
-        type="detect" 
-        name="detect"
-        output="screen"/>
-
-  <node pkg="visual_gps" 
-        type="visual_gps_2d_node" 
-        name="visual_gps_2d" 
-        output="screen"
-        args="0 1 2">
-    <param name="map_file" value="$(find visual_gps)/config/FEATURE_FILES/map.txt" />
-    <param name="camera_file" value="$(find visual_gps)/config/FEATURE_FILES/camera.txt" />
-    <param name="start_frame" value="/world" />
-    <param name="end_frame" value="/camera"/>
-  </node>
-
-  <node pkg="tf" type="static_transform_publisher" name="ftsensor_FRAME" args="0 0 0 0 0 0 /world /Features_markers 500" />
-
   <node name="rviz"
         pkg="rviz"
         type="rviz"
