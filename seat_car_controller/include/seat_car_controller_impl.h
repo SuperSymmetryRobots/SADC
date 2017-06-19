@@ -377,7 +377,7 @@ namespace seat_car_controller
       }
 
       /* convert input data */
-      std::cout << msg->data << "," << servo_angle << std::endl;
+      //std::cout << msg->data << "," << servo_angle << std::endl;
 
       this->last_cmd_steer=servo_angle;
     }
@@ -399,7 +399,7 @@ namespace seat_car_controller
       wheel_speed=motor_speed/5.5; // motor_speed / gear_ratio of the car
       linear_speed=wheel_speed*3.13159*this->wheel_diameter/60.0; // linear speed in m/s
 
-      std::cout << msg->data << "," << motor_voltage << "," << motor_speed << "," << wheel_speed << "," << linear_speed << std::endl;
+      //std::cout << msg->data << "," << motor_voltage << "," << motor_speed << "," << wheel_speed << "," << linear_speed << std::endl;
 
       if(this->last_cmd_steer>0)
       {
