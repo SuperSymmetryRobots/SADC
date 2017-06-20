@@ -1,0 +1,16 @@
+<!-- -->
+<launch>
+
+  <param name="road_description" command="$(find xacro)/xacro.py '$(find seat_car_description)/urdf/include/road/road_env.xacro'" />
+
+  <node pkg="robot_state_publisher" type="state_publisher" name="road_tf_broadcaster">
+    <param name="publish_frequency" type="double" value="50.0"/>
+    <remap from="/joint_states" to="/road/joint_states" />
+    <remap from="robot_description" to="road_description" />
+  </node>
+  
+  <node name="spawn_road" pkg="gazebo_ros" type="spawn_model" args="-param road_description -urdf -model road -x 0 -y 0 -z 0.0 -R 0 -P 0 -Y 0 "/>
+  
+  <node name="road_tf" pkg="tf" type="static_transform_publisher"
+        args="0 0 0 0 0 0 world road_link 100"/>
+</launch>
