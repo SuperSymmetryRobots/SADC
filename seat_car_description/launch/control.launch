@@ -1,0 +1,14 @@
+<!-- -->
+<launch>
+  <node pkg="control" type="control_node" name="control_node" output="screen">
+    <param name="steering_Kp" value="-56" />
+    <param name="steering_Kd" value="0.0" />
+    <param name="steering_Ki" value="0.0" />
+    <param name="speed_Kp" value="20" />
+    <param name="maximum_rpm" value="200" />
+    <param name="minimum_rpm" value="50" />
+    <param name="maximum_steering" value="20" />
+    <param name="minimum_steering" value="-20" />
+    <remap from="/lane_model/angle" to="/lane_model/curvature"/>    
+  </node>
+</launch>

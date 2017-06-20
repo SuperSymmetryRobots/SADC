@@ -1,0 +1,78 @@
+<?xml version="2.0"?>
+<robot>
+
+  <!-- Creative camera -->
+  <gazebo reference="camera_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="camera_depth_frame">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="camera_depth_optical_frame">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="camera_rgb_frame">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="camera_rgb_optical_frame">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="camera_rgb_optical_frame">
+    <sensor type="depth" name="rs300_camera">       
+      <always_on>1</always_on>
+      <visualize>true</visualize>             
+      <camera>
+        <horizontal_fov>1.24</horizontal_fov>  
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <depth_camera>
+        </depth_camera>
+        <clip>
+          <near>0.2</near>
+          <far>1.5</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>1.0</updateRate>
+        <cameraName>rs300_camera</cameraName>
+        <frameName>camera_link</frameName>                   
+        <imageTopicName>/app/camera/rgb/image_raw</imageTopicName>
+        <depthImageTopicName>/app/camera/depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>/app/camera/depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>/app/camera/rgb/camera_info</cameraInfoTopicName>              
+        <depthImageCameraInfoTopicName>/app/camera/depth/camera_info</depthImageCameraInfoTopicName>            
+        <pointCloudCutoff>0.4</pointCloudCutoff>                
+        <hackBaseline>0.007</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+        <CxPrime>0.0</CxPrime>
+        <Cx>0.0</Cx>
+        <Cy>0.0</Cy>
+        <focalLength>0.0</focalLength>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>
