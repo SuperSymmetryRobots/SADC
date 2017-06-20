@@ -40,13 +40,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://seat_car_description/urdf/road.dae" scale="${size*8.63} ${size*8.63} ${size*8.63}"/>
+          <mesh filename="package://seat_car_description/urdf/include/road/road.dae" scale="${size*8.63} ${size*8.63} ${size*8.63}"/>
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://seat_car_description/urdf/road.dae" scale="${size*8.63} ${size*8.63} ${size*8.63}"/>
+          <mesh filename="package://seat_car_description/urdf/include/road/road.dae" scale="${size*8.63} ${size*8.63} ${size*8.63}"/>
         </geometry>
       </collision>
     </link>

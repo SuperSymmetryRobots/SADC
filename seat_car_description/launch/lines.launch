@@ -1,5 +1,0 @@
-<!-- -->
-<launch>
-  <include file="$(find seat_car_description)/launch/line_detection/ip_mapping.launch"/>
-  <include file="$(find seat_car_description)/launch/line_detection/line_detection.launch"/>
-</launch>
