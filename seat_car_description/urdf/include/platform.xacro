@@ -3,8 +3,6 @@
 <robot name="seat_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Included URDF Files -->
-  <xacro:include filename="$(find seat_car_description)/urdf/materials.xacro" />
-  <xacro:include filename="$(find seat_car_description)/urdf/car_sensors.xacro" />
 
   <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin,
        navigation stack depends on this frame -->
@@ -264,7 +262,5 @@
       </geometry>
     </collision>
   </link>
-
-  <xacro:include filename="$(find seat_car_description)/urdf/car.gazebo" />
 
 </robot>

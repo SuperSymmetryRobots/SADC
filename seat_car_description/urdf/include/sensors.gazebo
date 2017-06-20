@@ -11,5 +11,7 @@
   <gazebo reference="camera_board">
     <material>Gazebo/Grey</material>
   </gazebo>
+  
+  <!-- each sensors included separately -->
 
 </robot>

@@ -2,8 +2,6 @@
 
 <root xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find seat_car_description)/urdf/road.gazebo" />
-
   <xacro:macro name="road" params="name size *origin">
     <!-- obstacle -->
     <link name="road_link">

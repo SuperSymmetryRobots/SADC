@@ -1,8 +1,10 @@
+<!-- -->
 <robot name="road" xmlns:xacro="http://www.ros.org/wiki/xacro">
  
-  <xacro:include filename="$(find seat_car_description)/urdf/road.xacro" />
+  <xacro:include filename="$(find seat_car_description)/urdf/include/road/road.xacro" />
+  <xacro:include filename="$(find seat_car_description)/urdf/include/road/road.gazebo" />
 
-  <xacro:road name="road1" size="5.0">
+  <xacro:road name="road_circle" size="5.0">
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
   </xacro:road>
 </robot>

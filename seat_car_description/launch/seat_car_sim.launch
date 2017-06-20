@@ -6,6 +6,9 @@
   <arg name="car_x"    default="0.0"/>
   <arg name="car_y"    default="0.0"/>
   <arg name="car_yaw"  default="0.0"/>
+  
+  <arg name="gps"   default="true"/>
+  <arg name="lines" default="true"/>
 
   <include file="$(find seat_car_gazebo)/launch/seat_car_gazebo.launch">
     <arg name="demo" value="$(arg demo)"/>
@@ -40,9 +43,33 @@
     <param name="stateless" value="false"/>
   </node>
 
-  <!-- spawn road -->
+  <node pkg="odometry" 
+        type="odometry_publisher" 
+        name="odometry_publisher"
+        output="screen">
+    <remap from="/motor_control/twist"
+             to="/model_car/twist"/>
+    <remap from="/model_car/yaw"
+             to="/model_car/yaw"/>
+  </node>
+  
+  <include file="$(find road_description)/launch/spawn_circuit.launch">
+    <arg name="model" value="circuit_8"/>
+  </include>
+
+  <include file="$(find road_description)/launch/spawn_ceiling.launch"/>
+
+  <include file="$(find road_description)/launch/spawn_box.launch">
+    <arg name="x" value="0.0"/>
+    <arg name="y" value="2.0"/>
+  </include>
+  
+  <include if="$(arg gps)"   file="$(find seat_car_description)/launch/gps.launch"/>
+  <include if="$(arg lines)" file="$(find seat_car_description)/launch/lines.launch"/>
+  
+  <!-- spawn circle road -->
   <!--
-  <param name="road_description" command="$(find xacro)/xacro.py '$(find seat_car_description)/urdf/road_env.xacro'" />
+  <param name="road_description" command="$(find xacro)/xacro.py '$(find seat_car_description)/urdf/include/road/road_env.xacro'" />
   <node pkg="robot_state_publisher" type="state_publisher" name="road_tf_broadcaster">
     <param name="publish_frequency" type="double" value="50.0"/>
     <remap from="/joint_states" to="/road/joint_states" />
@@ -53,20 +80,6 @@
   
   <node name="road_tf" pkg="tf" type="static_transform_publisher"
         args="0 0 0 0 0 0 world road1_link 100"/>
-  -->
-
-  <node pkg="odometry" 
-        type="odometry_publisher" 
-        name="odometry_publisher"
-        output="screen">
-    <remap from="/motor_control/twist"
-             to="/model_car/twist"/>
-    <remap from="/model_car/yaw"
-             to="/model_car/yaw"/>
-  </node>
-
-  <!--
-  <include file="$(find seat_car_description)/launch/gps.launch"/>
   -->
   
   <node name="rviz"
