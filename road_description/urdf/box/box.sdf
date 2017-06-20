@@ -2,8 +2,9 @@
 
 <sdf version="1.4">
   <model name="cube">
+    <static>true</static>
+    <pose>0 0 0.125 0 0 0</pose>
     <link name="link">
-      <pose>0 0 0.125 0 0 0</pose>
       <collision name="collision">
         <geometry>
           <box>
