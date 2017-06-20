@@ -1,0 +1,26 @@
+<!-- -->
+<launch>
+
+  <arg name="name"  default="seat_car"/>
+  <arg name="model" default="car"/>
+  <arg name="x"     default="0.0"/>
+  <arg name="y"     default="0.0"/>
+  <arg name="yaw"   default="0.0"/>
+
+  <arg name="world_frame" default="world"/>
+  <arg name="odom_frame" default="odom"/>
+
+  <include file="$(find seat_car_description)/launch/description.launch">
+    <arg name="name"  value="$(arg name)"/>
+    <arg name="model" value="$(arg model)"/>
+  </include>
+
+  <node name="spawn_urdf_$(arg name)" pkg="gazebo_ros" type="spawn_model" 
+        args="-param robot_description -urdf -model $(arg name)
+              -x $(arg x) -y $(arg y) -z 0.04 -R 0 -P 0 -Y $(arg yaw) "/>
+  
+  <node name="static_tf_$(arg name)" pkg="tf" type="static_transform_publisher"
+        args="$(arg x) $(arg y) 0.04 $(arg yaw) 0 0 $(arg world_frame) $(arg odom_frame) 100"/>
+
+</launch>
+
