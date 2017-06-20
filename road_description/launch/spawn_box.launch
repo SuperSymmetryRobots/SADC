@@ -1,0 +1,15 @@
+<!-- -->
+<launch>
+  <arg name="name" default="box"/>
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="yaw"   default="0.0"/>
+  <arg name="model" default="$(find road_description)/urdf/box/box.sdf"/>
+
+  <node name="spawn_urdf_$(arg name)"
+        pkg ="gazebo_ros" 
+        type="spawn_model"
+        args="-file $(arg model) -sdf -model $(arg name) -x $(arg x) -y $(arg y) -Y $(arg yaw)">
+  </node>
+
+</launch>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+
+<root xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find road_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find road_description)/urdf/ceiling/ceiling.gazebo" />
+
+  <xacro:macro name="ceiling" params="parent:=ceiling_base_link name:=ceiling *origin">
+
+    <joint name="joint_${name}_parent_to_link" type="fixed">
+      <xacro:insert_block name="origin" /> 
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+    </joint>
+
+    <link name="${name}">
+    </link>
+
+    <joint name="joint_${name}_to_lamp1" type="fixed">
+      <origin xyz="10 10 -0.02" rpy="0 0 0" />
+      <parent link="${name}"/>
+      <child link="lamp1" />
+    </joint>
+
+    <link name="lamp1">
+      <inertial>
+        <mass value="0.001"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="2 2 0.02"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="2 2 0.02"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_${name}_to_lamp2" type="fixed">
+      <origin xyz="10 -10 -0.02" rpy="0 0 0" />
+      <parent link="${name}"/>
+      <child link="lamp2" />
+    </joint>
+
+    <link name="lamp2">
+      <inertial>
+        <mass value="0.001"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="2 2 0.02"/>
+        </geometry>
+        <material name="green" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="2 2 0.02"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_${name}_to_lamp3" type="fixed">
+      <origin xyz="-10 10 -0.02" rpy="0 0 0" />
+      <parent link="${name}"/>
+      <child link="lamp3" />
+    </joint>
+
+    <link name="lamp3">
+      <inertial>
+        <mass value="0.001"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="2 2 0.02"/>
+        </geometry>
+        <material name="blue" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="2 2 0.02"/>
+        </geometry>
+      </collision>
+    </link>
+
+  </xacro:macro>
+
+</root>
