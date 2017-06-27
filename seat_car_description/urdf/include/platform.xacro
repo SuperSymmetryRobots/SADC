@@ -3,6 +3,8 @@
 <robot name="seat_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Included URDF Files -->
+  <xacro:property name="PI" value="3.1415926535897931" />
+  <xacro:property name="angle_limit" value="${PI/3.0}" />
 
   <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin,
        navigation stack depends on this frame -->
@@ -30,7 +32,7 @@
   </link>
 
   <joint name="base_link_rear_left_wheel_joint" type="revolute">
-    <origin xyz="0.0 -0.0825 0" rpy="1.5707 0 0" />
+    <origin xyz="0.0 -0.0825 0" rpy="${PI/2.0} 0 0" />
     <axis xyz="0 0 1" />
     <anchor xyz="0 0 0" />
     <parent link="base_link" />
@@ -73,7 +75,7 @@
   </link>
 
   <joint name="base_link_rear_right_wheel_joint" type="revolute">
-    <origin xyz="0.0 0.0825 0" rpy="-1.5707 0 0" />
+    <origin xyz="0.0 0.0825 0" rpy="-${PI/2.0} 0 0" />
     <axis xyz="0 0 1" />
     <anchor xyz="0 0 0" />
     <parent link="base_link" />
@@ -116,12 +118,12 @@
   </link>
 
   <joint name="base_link_front_left_axel_joint" type="revolute">
-    <origin xyz="0.260 -0.0825 0" rpy="1.5707 0 0" />
+    <origin xyz="0.260 -0.0825 0" rpy="${PI/2.0} 0 0" />
     <axis xyz="0 1 0" />
     <anchor xyz="0 0 0" />
     <parent link="base_link" />
     <child link="front_left_axel_link" />
-    <limit lower="-1.5707" upper="1.5707" effort="9.6" velocity="5.3"/>
+    <limit lower="-${angle_limit}" upper="${angle_limit}" effort="9.6" velocity="5.3"/>
     <dynamics damping="0.2"/>
   </joint>
 
@@ -190,12 +192,12 @@
   </link>
 
   <joint name="base_link_front_right_axel_joint" type="revolute">
-    <origin xyz="0.260 0.0825 0" rpy="-1.5707 0 0" />
+    <origin xyz="0.260 0.0825 0" rpy="-${PI/2.0} 0 0" />
     <axis xyz="0 1 0" />
     <anchor xyz="0 0 0" />
     <parent link="base_link" />
     <child link="front_right_axel_link" />
-    <limit lower="-1.5707" upper="1.5707" effort="9.6" velocity="5.3"/>
+    <limit lower="-${angle_limit}" upper="${angle_limit}" effort="9.6" velocity="5.3"/>
     <dynamics damping="0.2"/>
   </joint>
 
