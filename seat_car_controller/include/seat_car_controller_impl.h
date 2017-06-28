@@ -353,13 +353,16 @@ namespace seat_car_controller
   template <class HardwareInterface>
     void SeatCarController<HardwareInterface>::steering_callback(const std_msgs::Int16::ConstPtr& msg)
     {
-      double servo_angle=(this->zero_steer_angle-msg->data)*3.14159/180.0;
+      double k=0.5;
+      double servo_angle=k*(this->zero_steer_angle-msg->data)*3.14159/180.0;
       double radius;
 
       if(fabs(servo_angle)>0.001)
         radius=fabs(this->axel_distance/tan(servo_angle));
       else
         radius=std::numeric_limits<double>::max();
+
+      //std::cout << msg->data << "," << servo_angle << std::endl;
 
       if(servo_angle>0)
       {
@@ -375,9 +378,6 @@ namespace seat_car_controller
         // left inner
         this->front_left_cmd=-atan2(this->axel_distance,radius-this->wheel_distance/2.0);
       }
-
-      /* convert input data */
-      //std::cout << msg->data << "," << servo_angle << std::endl;
 
       this->last_cmd_steer=servo_angle;
     }
