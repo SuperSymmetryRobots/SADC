@@ -207,7 +207,7 @@ namespace seat_car_controller
       controller_nh_.getParam("wheel_diameter", this->wheel_diameter);
       ROS_DEBUG_STREAM_NAMED(name_, "Wheel diameter set to: " << this->wheel_diameter);
 
-      this->zero_steer_angle=90.0;
+      this->zero_steer_angle=0.0;
       controller_nh_.getParam("zero_steer_angle", this->zero_steer_angle);
       ROS_DEBUG_STREAM_NAMED(name_, "Zero steer angle set to: " << this->zero_steer_angle);
 
@@ -234,6 +234,18 @@ namespace seat_car_controller
       this->twist_topic="/model_car/twist";
       controller_nh_.getParam("twist_topic", this->twist_topic);
       ROS_DEBUG_STREAM_NAMED(name_, "Twist topic set to: " << this->twist_topic);
+
+      this->steer_coeff_a=0.0;
+      controller_nh_.getParam("steer_coeff_a", this->steer_coeff_a);
+      ROS_DEBUG_STREAM_NAMED(name_, "Steering model coefficient A set to: " << this->steer_coeff_a);
+
+      this->steer_coeff_b=0.0;
+      controller_nh_.getParam("steer_coeff_b", this->steer_coeff_b);
+      ROS_DEBUG_STREAM_NAMED(name_, "Steering model coefficient B set to: " << this->steer_coeff_b);
+
+      this->steer_coeff_c=0.0;
+      controller_nh_.getParam("steer_coeff_c", this->steer_coeff_c);
+      ROS_DEBUG_STREAM_NAMED(name_, "Steering model coefficient C set to: " << this->steer_coeff_c);
 
       // ros communications
       this->steering_sub = root_nh.subscribe(this->steering_topic, 1, &SeatCarController<HardwareInterface>::steering_callback,this);
@@ -353,18 +365,21 @@ namespace seat_car_controller
   template <class HardwareInterface>
     void SeatCarController<HardwareInterface>::steering_callback(const std_msgs::Int16::ConstPtr& msg)
     {
-      double k=0.5;
-      double servo_angle=k*(this->zero_steer_angle-msg->data)*3.14159/180.0;
+      double servo_angle=(msg->data-this->zero_steer_angle)*3.14159/180.0;
+      double car_angle;
       double radius;
 
-      if(fabs(servo_angle)>0.001)
-        radius=fabs(this->axel_distance/tan(servo_angle));
+      car_angle=-(this->steer_coeff_a*pow(servo_angle,2.0)+this->steer_coeff_b*servo_angle+this->steer_coeff_c);
+      if(fabs(car_angle)>0.001)
+        radius=fabs(this->axel_distance/tan(car_angle));
       else
         radius=std::numeric_limits<double>::max();
 
+      std::cout << msg->data << "," << servo_angle << "," << car_angle << "," << radius << std::endl;
+
       //std::cout << msg->data << "," << servo_angle << std::endl;
 
-      if(servo_angle>0)
+      if(car_angle>0)
       {
         // right inner
         this->front_right_cmd=-atan2(this->axel_distance,radius-this->wheel_distance/2.0);
@@ -379,7 +394,7 @@ namespace seat_car_controller
         this->front_left_cmd=-atan2(this->axel_distance,radius-this->wheel_distance/2.0);
       }
 
-      this->last_cmd_steer=servo_angle;
+      this->last_cmd_steer=car_angle;
     }
 
   template <class HardwareInterface>

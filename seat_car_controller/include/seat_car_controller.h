@@ -87,6 +87,11 @@ namespace seat_car_controller
       double last_cmd_drive;
       double last_cmd_steer;
 
+      // steering model
+      double steer_coeff_a;
+      double steer_coeff_b;
+      double steer_coeff_c;
+
       // ROS API
       ros::NodeHandle controller_nh_;
   };

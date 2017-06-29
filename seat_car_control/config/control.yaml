@@ -21,6 +21,10 @@
     yaw_topic: /model_car/yaw    
     revolutions_topic: /model_car/revolutions
     twist_topic: /model_car/twist    
+    zero_steer_angle: 0.0
+    steer_coeff_a: 0.1343
+    steer_coeff_b: -0.9429
+    steer_coeff_c: 1.058
     
     gains:
       base_link_front_left_axel_joint:
