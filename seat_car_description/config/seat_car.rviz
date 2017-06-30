@@ -56,19 +56,13 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
-        box/back:
-          Value: true
         box/base_footprint:
           Value: true
         box/base_link:
           Value: true
         box/body:
           Value: true
-        box/front:
-          Value: true
         box/odom:
-          Value: true
-        box/top:
           Value: true
         camera:
           Value: true
@@ -93,6 +87,14 @@ Visualization Manager:
         ceiling:
           Value: true
         ceiling_base_link:
+          Value: true
+        cylinder/base_footprint:
+          Value: true
+        cylinder/base_link:
+          Value: true
+        cylinder/body:
+          Value: true
+        cylinder/odom:
           Value: true
         front_left_axel_link:
           Value: true
@@ -130,9 +132,65 @@ Visualization Manager:
           Value: true
         road12_link:
           Value: true
+        road13_image:
+          Value: true
+        road13_link:
+          Value: true
+        road14_image:
+          Value: true
+        road14_link:
+          Value: true
+        road15_image:
+          Value: true
+        road15_link:
+          Value: true
+        road16_image:
+          Value: true
+        road16_link:
+          Value: true
+        road17_image:
+          Value: true
+        road17_link:
+          Value: true
+        road18_image:
+          Value: true
+        road18_link:
+          Value: true
+        road19_image:
+          Value: true
+        road19_link:
+          Value: true
         road1_image:
           Value: true
         road1_link:
+          Value: true
+        road20_image:
+          Value: true
+        road20_link:
+          Value: true
+        road21_image:
+          Value: true
+        road21_link:
+          Value: true
+        road22_image:
+          Value: true
+        road22_link:
+          Value: true
+        road23_image:
+          Value: true
+        road23_link:
+          Value: true
+        road24_image:
+          Value: true
+        road24_link:
+          Value: true
+        road25_image:
+          Value: true
+        road25_link:
+          Value: true
+        road26_image:
+          Value: true
+        road26_link:
           Value: true
         road2_image:
           Value: true
@@ -186,13 +244,7 @@ Visualization Manager:
           box/odom:
             box/base_footprint:
               box/base_link:
-                box/back:
-                  {}
                 box/body:
-                  {}
-                box/front:
-                  {}
-                box/top:
                   {}
           ceiling_base_link:
             ceiling:
@@ -202,6 +254,11 @@ Visualization Manager:
                 {}
               lamp3:
                 {}
+          cylinder/odom:
+            cylinder/base_footprint:
+              cylinder/base_link:
+                cylinder/body:
+                  {}
           odom:
             base_link:
               front_left_axel_link:
@@ -245,8 +302,50 @@ Visualization Manager:
             road12_link:
               road12_image:
                 {}
+            road13_link:
+              road13_image:
+                {}
+            road14_link:
+              road14_image:
+                {}
+            road15_link:
+              road15_image:
+                {}
+            road16_link:
+              road16_image:
+                {}
+            road17_link:
+              road17_image:
+                {}
+            road18_link:
+              road18_image:
+                {}
+            road19_link:
+              road19_image:
+                {}
             road1_link:
               road1_image:
+                {}
+            road20_link:
+              road20_image:
+                {}
+            road21_link:
+              road21_image:
+                {}
+            road22_link:
+              road22_image:
+                {}
+            road23_link:
+              road23_image:
+                {}
+            road24_link:
+              road24_image:
+                {}
+            road25_link:
+              road25_image:
+                {}
+            road26_link:
+              road26_image:
                 {}
             road2_link:
               road2_image:
@@ -423,12 +522,138 @@ Visualization Manager:
               Alpha: 1
               Show Axes: false
               Show Trail: false
+            road13_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road13_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road14_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road14_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road15_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road15_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road16_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road16_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road17_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road17_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road18_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road18_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road19_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road19_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
             road1_image:
               Alpha: 1
               Show Axes: false
               Show Trail: false
               Value: true
             road1_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road20_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road20_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road21_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road21_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road22_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road22_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road23_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road23_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road24_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road24_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road25_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road25_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            road26_image:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            road26_link:
               Alpha: 1
               Show Axes: false
               Show Trail: false
@@ -573,10 +798,6 @@ Visualization Manager:
             Expand Link Details: false
             Expand Tree: false
             Link Tree Style: Links in Alphabetic Order
-            back:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
             base_footprint:
               Alpha: 1
               Show Axes: false
@@ -590,22 +811,53 @@ Visualization Manager:
               Show Axes: false
               Show Trail: false
               Value: true
-            front:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
-            top:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
           Name: BoxModel
           Robot Description: box_description
           TF Prefix: box
           Update Interval: 0
           Value: true
           Visual Enabled: true
+        - Alpha: 0.9
+          Class: rviz/RobotModel
+          Collision Enabled: false
+          Enabled: true
+          Links:
+            All Links Enabled: true
+            Expand Joint Details: false
+            Expand Link Details: false
+            Expand Tree: false
+            Link Tree Style: Links in Alphabetic Order
+            base_footprint:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            base_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            body:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+          Name: CylinderModel
+          Robot Description: cylinder_description
+          TF Prefix: cylinder
+          Update Interval: 0
+          Value: true
+          Visual Enabled: true
       Enabled: true
       Name: Models
+    - Angle Tolerance: 0.1
+      Class: rviz/Odometry
+      Color: 255; 255; 0
+      Enabled: true
+      Keep: 1000
+      Length: 0.25
+      Name: Odometry
+      Position Tolerance: 0.25
+      Topic: /odom
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -621,7 +873,7 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 7.00649e-45
+      Max Intensity: 2.15527e-37
       Min Color: 0; 0; 0
       Min Intensity: 0
       Name: RP_Lidar
@@ -765,22 +1017,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 23.1431
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.302705
+        Y: -0.284578
+        Z: -0.147292
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.785398
+      Pitch: 0.950398
       Target Frame: base_link
       Value: Orbit (rviz)
-      Yaw: 0.785398
+      Yaw: 3.1304
     Saved: ~
 Window Geometry:
   Displays:
@@ -803,6 +1055,6 @@ Window Geometry:
     collapsed: false
   Width: 1602
   X: 68
-  Y: 261
+  Y: 289
   gps_camera:
     collapsed: false
