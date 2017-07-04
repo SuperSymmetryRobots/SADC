@@ -5,7 +5,7 @@
   <arg name="model" default="car"/>
   
   <param name="robot_description"
-         command="$(find xacro)/xacro.py '$(find seat_car_description)/urdf/$(arg model).xacro'" />
+         command="$(find xacro)/xacro '$(find seat_car_description)/urdf/$(arg model).xacro'" />
 
   <node pkg="robot_state_publisher" type="state_publisher" name="tf_broadcaster_$(arg name)">
     <param name="publish_frequency" type="double" value="50.0"/>

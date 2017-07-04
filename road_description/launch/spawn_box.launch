@@ -10,7 +10,7 @@
   <arg name="height" default="0.25"/>
   <arg name="model" default="$(find road_description)/urdf/box/box.xacro"/>
 
-  <param name="$(arg name)_description" command="$(find xacro)/xacro.py '$(arg model)' name:=$(arg name) length:=$(arg length) width:=$(arg width) height:=$(arg height)" />
+  <param name="$(arg name)_description" command="$(find xacro)/xacro '$(arg model)' name:=$(arg name) length:=$(arg length) width:=$(arg width) height:=$(arg height)" />
 
   <node name="$(arg name)_state_publisher"
         pkg ="robot_state_publisher"
