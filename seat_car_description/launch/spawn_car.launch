@@ -27,6 +27,7 @@
     <arg name="name" value="$(arg name)"/>
   </include>
   
+  <!-- odometry pkg from https://github.com/AutoModelCar/model_car/tree/version-3 -->
   <node pkg ="odometry" 
         type="odometry_publisher" 
         name="odometry_publisher"
