@@ -68,4 +68,3 @@
         args="$(arg x) $(arg y) 0.04 $(arg yaw) 0 0 $(arg map_frame) $(arg odom_frame) 100"/>
 
 </launch>
-
