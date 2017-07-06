@@ -3,9 +3,23 @@
 <root xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find road_description)/urdf/materials.xacro" />
-  <xacro:include filename="$(find road_description)/urdf/ceiling/ceiling.gazebo" />
+  <xacro:property name="default_side" value="10.0" />
+  <xacro:property name="default_width" value="2.0" />
+  <xacro:property name="default_thick" value="0.02" />
 
-  <xacro:macro name="ceiling" params="parent:=ceiling_base_link name:=ceiling *origin">
+  <xacro:macro name="ceiling" 
+               params="parent:=ceiling_base_link 
+                       name:=ceiling 
+                       *origin 
+                       x1:=${default_side}
+                       y1:=${default_side}
+                       x2:=${default_side}
+                       y2:=-${default_side}
+                       x3:=-${default_side}
+                       y3:=${default_side}
+                       width:=${default_width}
+                       length:=${default_width}
+                       thick:=${default_thick}">
 
     <joint name="joint_${name}_parent_to_link" type="fixed">
       <xacro:insert_block name="origin" /> 
@@ -17,7 +31,7 @@
     </link>
 
     <joint name="joint_${name}_to_lamp1" type="fixed">
-      <origin xyz="10 10 -0.02" rpy="0 0 0" />
+      <origin xyz="${x1} ${y1} -${thick/2.0}" rpy="0 0 0" />
       <parent link="${name}"/>
       <child link="lamp1" />
     </joint>
@@ -31,20 +45,20 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="2 2 0.02"/>
+          <box size="${length} ${width} ${thick}"/>
         </geometry>
         <material name="red"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="2 2 0.02"/>
+          <box size="${length} ${width} ${thick}"/>
         </geometry>
       </collision>
     </link>
 
     <joint name="joint_${name}_to_lamp2" type="fixed">
-      <origin xyz="10 -10 -0.02" rpy="0 0 0" />
+      <origin xyz="${x2} ${y2} -${thick/2.0}" rpy="0 0 0" />
       <parent link="${name}"/>
       <child link="lamp2" />
     </joint>
@@ -58,20 +72,20 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="2 2 0.02"/>
+          <box size="${length} ${width} ${thick}"/>
         </geometry>
         <material name="green" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="2 2 0.02"/>
+          <box size="${length} ${width} ${thick}"/>
         </geometry>
       </collision>
     </link>
 
     <joint name="joint_${name}_to_lamp3" type="fixed">
-      <origin xyz="-10 10 -0.02" rpy="0 0 0" />
+      <origin xyz="${x3} ${y3} -${thick/2.0}" rpy="0 0 0" />
       <parent link="${name}"/>
       <child link="lamp3" />
     </joint>
@@ -85,17 +99,37 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="2 2 0.02"/>
+          <box size="${length} ${width} ${thick}"/>
         </geometry>
         <material name="blue" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="2 2 0.02"/>
+          <box size="${length} ${width} ${thick}"/>
         </geometry>
       </collision>
     </link>
+
+    <gazebo>
+      <static>1</static>
+    </gazebo>
+
+    <gazebo reference="ceiling">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="lamp1">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="lamp2">
+      <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="lamp3">
+      <material>Gazebo/Blue</material>
+    </gazebo>
 
   </xacro:macro>
 

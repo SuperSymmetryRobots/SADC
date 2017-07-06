@@ -10,7 +10,7 @@
 
     <link name="base_link">
       <inertial>
-        <mass value="1" />
+        <mass value="100" />
         <origin xyz="0 0 0" />
         <inertia 
           ixx="1.0" ixy="0.0" ixz="0.0"

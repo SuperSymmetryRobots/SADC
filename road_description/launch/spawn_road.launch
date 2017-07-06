@@ -8,7 +8,11 @@
   <arg name="model_path" default="$(find road_description)/urdf/$(arg model).xacro"/>
   <arg name="parent" default="$(arg name)_base_link"/>
 
-  <param name="$(arg name)_description" command="$(find xacro)/xacro.py '$(arg model_path)' name:=$(arg name) parent:=$(arg parent)" />
+  <param name="$(arg name)_description" 
+         command="$(find xacro)/xacro.py '$(arg model_path)' 
+                  name:=$(arg name)
+                  parent:=$(arg parent)">
+  </param>
 
   <node name="$(arg name)_state_publisher"
         pkg ="robot_state_publisher"
