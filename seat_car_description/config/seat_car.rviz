@@ -4,9 +4,11 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /TF1/Frames1
         - /Models1
-      Splitter Ratio: 0.5
-    Tree Height: 421
+        - /top_camera_Camera1/Visibility1
+      Splitter Ratio: 0.625
+    Tree Height: 602
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -25,7 +27,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: SR300_image
+    SyncSource: RP_Lidar
 Visualization Manager:
   Class: ""
   Displays:
@@ -40,343 +42,27 @@ Visualization Manager:
       Name: Grid
       Normal Cell Count: 0
       Offset:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.5
+        Y: 0.5
+        Z: 0.02
       Plane: XY
       Plane Cell Count: 200
       Reference Frame: <Fixed Frame>
       Value: true
     - Class: rviz/TF
-      Enabled: true
+      Enabled: false
       Frame Timeout: 15
       Frames:
-        All Enabled: true
-        base_link:
-          Value: true
-        box/base_footprint:
-          Value: true
-        box/base_link:
-          Value: true
-        box/body:
-          Value: true
-        box/odom:
-          Value: true
-        camera:
-          Value: true
-        camera_board:
-          Value: true
-        camera_depth_frame:
-          Value: true
-        camera_depth_optical_frame:
-          Value: true
-        camera_link:
-          Value: true
-        camera_link2:
-          Value: true
-        camera_optical:
-          Value: true
-        camera_rgb_frame:
-          Value: true
-        camera_rgb_optical_frame:
-          Value: true
-        camera_rgb_optical_frame2:
-          Value: true
-        ceiling:
-          Value: true
-        ceiling_base_link:
-          Value: true
-        cylinder/base_footprint:
-          Value: true
-        cylinder/base_link:
-          Value: true
-        cylinder/body:
-          Value: true
-        cylinder/odom:
-          Value: true
-        front_left_axel_link:
-          Value: true
-        front_left_wheel_link:
-          Value: true
-        front_right_axel_link:
-          Value: true
-        front_right_wheel_link:
-          Value: true
-        imu:
-          Value: true
-        lamp1:
-          Value: true
-        lamp2:
-          Value: true
-        lamp3:
-          Value: true
-        laser:
-          Value: true
-        map:
-          Value: true
-        odom:
-          Value: true
-        rear_left_wheel_link:
-          Value: true
-        rear_right_wheel_link:
-          Value: true
-        road10_image:
-          Value: true
-        road10_link:
-          Value: true
-        road11_image:
-          Value: true
-        road11_link:
-          Value: true
-        road12_image:
-          Value: true
-        road12_link:
-          Value: true
-        road13_image:
-          Value: true
-        road13_link:
-          Value: true
-        road14_image:
-          Value: true
-        road14_link:
-          Value: true
-        road15_image:
-          Value: true
-        road15_link:
-          Value: true
-        road16_image:
-          Value: true
-        road16_link:
-          Value: true
-        road17_image:
-          Value: true
-        road17_link:
-          Value: true
-        road18_image:
-          Value: true
-        road18_link:
-          Value: true
-        road19_image:
-          Value: true
-        road19_link:
-          Value: true
-        road1_image:
-          Value: true
-        road1_link:
-          Value: true
-        road20_image:
-          Value: true
-        road20_link:
-          Value: true
-        road21_image:
-          Value: true
-        road21_link:
-          Value: true
-        road22_image:
-          Value: true
-        road22_link:
-          Value: true
-        road23_image:
-          Value: true
-        road23_link:
-          Value: true
-        road24_image:
-          Value: true
-        road24_link:
-          Value: true
-        road25_image:
-          Value: true
-        road25_link:
-          Value: true
-        road26_image:
-          Value: true
-        road26_link:
-          Value: true
-        road2_image:
-          Value: true
-        road2_link:
-          Value: true
-        road3_image:
-          Value: true
-        road3_link:
-          Value: true
-        road4_image:
-          Value: true
-        road4_link:
-          Value: true
-        road5_image:
-          Value: true
-        road5_link:
-          Value: true
-        road6_image:
-          Value: true
-        road6_link:
-          Value: true
-        road7_image:
-          Value: true
-        road7_link:
-          Value: true
-        road8_image:
-          Value: true
-        road8_link:
-          Value: true
-        road9_image:
-          Value: true
-        road9_link:
-          Value: true
-        road_base_link:
-          Value: true
-        road_ground_image:
-          Value: true
-        road_ground_link:
-          Value: true
-        sensor_board:
-          Value: true
-        world:
-          Value: true
-      Marker Scale: 0.3
+        All Enabled: false
+      Marker Scale: 0.5
       Name: TF
       Show Arrows: false
       Show Axes: true
       Show Names: true
       Tree:
-        world:
-          box/odom:
-            box/base_footprint:
-              box/base_link:
-                box/body:
-                  {}
-          ceiling_base_link:
-            ceiling:
-              lamp1:
-                {}
-              lamp2:
-                {}
-              lamp3:
-                {}
-          cylinder/odom:
-            cylinder/base_footprint:
-              cylinder/base_link:
-                cylinder/body:
-                  {}
-          map:
-            odom:
-              base_link:
-                front_left_axel_link:
-                  front_left_wheel_link:
-                    {}
-                front_right_axel_link:
-                  front_right_wheel_link:
-                    {}
-                rear_left_wheel_link:
-                  {}
-                rear_right_wheel_link:
-                  {}
-                sensor_board:
-                  camera_board:
-                    camera:
-                      camera_optical:
-                        {}
-                    camera_link:
-                      camera_depth_frame:
-                        {}
-                      camera_depth_optical_frame:
-                        {}
-                      camera_rgb_frame:
-                        {}
-                      camera_rgb_optical_frame:
-                        {}
-                    camera_link2:
-                      camera_rgb_optical_frame2:
-                        {}
-                  imu:
-                    {}
-                  laser:
-                    {}
-          road_base_link:
-            road10_link:
-              road10_image:
-                {}
-            road11_link:
-              road11_image:
-                {}
-            road12_link:
-              road12_image:
-                {}
-            road13_link:
-              road13_image:
-                {}
-            road14_link:
-              road14_image:
-                {}
-            road15_link:
-              road15_image:
-                {}
-            road16_link:
-              road16_image:
-                {}
-            road17_link:
-              road17_image:
-                {}
-            road18_link:
-              road18_image:
-                {}
-            road19_link:
-              road19_image:
-                {}
-            road1_link:
-              road1_image:
-                {}
-            road20_link:
-              road20_image:
-                {}
-            road21_link:
-              road21_image:
-                {}
-            road22_link:
-              road22_image:
-                {}
-            road23_link:
-              road23_image:
-                {}
-            road24_link:
-              road24_image:
-                {}
-            road25_link:
-              road25_image:
-                {}
-            road26_link:
-              road26_image:
-                {}
-            road2_link:
-              road2_image:
-                {}
-            road3_link:
-              road3_image:
-                {}
-            road4_link:
-              road4_image:
-                {}
-            road5_link:
-              road5_image:
-                {}
-            road6_link:
-              road6_image:
-                {}
-            road7_link:
-              road7_image:
-                {}
-            road8_link:
-              road8_image:
-                {}
-            road9_link:
-              road9_image:
-                {}
-            road_ground_link:
-              road_ground_image:
-                {}
+        {}
       Update Interval: 0
-      Value: true
+      Value: false
     - Class: rviz/Group
       Displays:
         - Alpha: 0.9
@@ -394,46 +80,17 @@ Visualization Manager:
               Show Axes: false
               Show Trail: false
               Value: true
-            camera:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
-              Value: true
             camera_board:
               Alpha: 1
               Show Axes: false
               Show Trail: false
               Value: true
-            camera_depth_frame:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
-            camera_depth_optical_frame:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
             camera_link:
               Alpha: 1
               Show Axes: false
               Show Trail: false
               Value: true
-            camera_link2:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
-            camera_optical:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
-            camera_rgb_frame:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
             camera_rgb_optical_frame:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
-            camera_rgb_optical_frame2:
               Alpha: 1
               Show Axes: false
               Show Trail: false
@@ -480,6 +137,15 @@ Visualization Manager:
               Show Axes: false
               Show Trail: false
               Value: true
+            top_camera:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            top_camera_optical:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
           Name: RobotModel
           Robot Description: robot_description
           TF Prefix: ""
@@ -734,15 +400,6 @@ Visualization Manager:
               Alpha: 1
               Show Axes: false
               Show Trail: false
-            road_ground_image:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
-              Value: true
-            road_ground_link:
-              Alpha: 1
-              Show Axes: false
-              Show Trail: false
               Value: true
           Name: RoadModel
           Robot Description: road_description
@@ -789,7 +446,7 @@ Visualization Manager:
           Update Interval: 0
           Value: true
           Visual Enabled: true
-        - Alpha: 0.9
+        - Alpha: 0.5
           Class: rviz/RobotModel
           Collision Enabled: false
           Enabled: true
@@ -818,7 +475,7 @@ Visualization Manager:
           Update Interval: 0
           Value: true
           Visual Enabled: true
-        - Alpha: 0.9
+        - Alpha: 0.5
           Class: rviz/RobotModel
           Collision Enabled: false
           Enabled: true
@@ -849,14 +506,14 @@ Visualization Manager:
           Visual Enabled: true
       Enabled: true
       Name: Models
-    - Angle Tolerance: 0.1
+    - Angle Tolerance: 0.05
       Class: rviz/Odometry
       Color: 255; 255; 0
       Enabled: true
-      Keep: 1000
+      Keep: 100
       Length: 0.25
       Name: Odometry
-      Position Tolerance: 0.25
+      Position Tolerance: 0.2
       Topic: /odom
       Value: true
     - Alpha: 1
@@ -874,7 +531,7 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 1.30784e-37
+      Max Intensity: 2.8026e-45
       Min Color: 0; 0; 0
       Min Intensity: 0
       Name: RP_Lidar
@@ -907,14 +564,14 @@ Visualization Manager:
       Max Intensity: 4096
       Min Color: 0; 0; 0
       Min Intensity: 0
-      Name: SR300_depth
+      Name: camera_PointCloud2
       Position Transformer: XYZ
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
       Size (m): 0.01
       Style: Points
-      Topic: /app/camera/depth/points
+      Topic: /camera/depth/points
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -925,28 +582,84 @@ Visualization Manager:
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: gps_camera
+      Name: top_camera_Image
       Normalize Range: true
       Queue Size: 2
       Transport Hint: compressed
       Unreliable: false
       Value: true
+    - Class: rviz/Camera
+      Enabled: false
+      Image Rendering: background and overlay
+      Image Topic: /usb_cam/image_raw
+      Name: top_camera_Camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: false
+      Visibility:
+        Grid: true
+        Models:
+          BoxModel: true
+          CeilingModel: true
+          CylinderModel: true
+          RoadModel: true
+          RobotModel: true
+          Value: true
+        Odometry: true
+        RP_Lidar: true
+        TF: false
+        Value: true
+        camera_Camera: true
+        camera_Image: true
+        camera_PointCloud2: true
+        top_camera_Image: true
+      Zoom Factor: 1
     - Class: rviz/Image
       Enabled: true
       Image Topic: /camera/rgb/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: SR300_image
+      Name: camera_Image
       Normalize Range: true
       Queue Size: 2
       Transport Hint: raw
       Unreliable: false
       Value: true
+    - Class: rviz/Camera
+      Enabled: false
+      Image Rendering: background and overlay
+      Image Topic: /camera/rgb/image_raw
+      Name: camera_Camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: false
+      Visibility:
+        Grid: true
+        Models:
+          BoxModel: true
+          CeilingModel: true
+          CylinderModel: true
+          RoadModel: true
+          RobotModel: true
+          Value: true
+        Odometry: true
+        RP_Lidar: true
+        TF: false
+        Value: true
+        camera_Image: true
+        camera_PointCloud2: true
+        top_camera_Camera: true
+        top_camera_Image: true
+      Zoom Factor: 1
   Enabled: true
   Global Options:
-    Background Color: 48; 48; 48
-    Fixed Frame: odom
+    Background Color: 23; 23; 23
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -957,7 +670,7 @@ Visualization Manager:
     - Class: rviz/FocusCamera
     - Class: rviz/Measure
     - Class: rviz/SetInitialPose
-      Topic: /initialpose
+      Topic: /seat_car/initialpose
     - Class: rviz/SetGoal
       Topic: /move_base_simple/goal
     - Class: rviz/PublishPoint
@@ -967,19 +680,19 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 14.0493
+      Distance: 24.5159
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.162043
-        Y: -3.1398
-        Z: -0.0381748
+        X: 1.93815
+        Y: -1.0023
+        Z: 0.459106
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 1.2504
+      Pitch: 1.1704
       Target Frame: base_link
       Value: Orbit (rviz)
       Yaw: 3.1354
@@ -987,12 +700,10 @@ Visualization Manager:
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 636
+  Height: 817
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000016a00000236fc0200000009fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000002800000236000000dd00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006501000002520000014e0000000000000000000000010000014f00000236fc0200000006fb0000001600530052003300300030005f0069006d0061006700650100000028000001130000001600fffffffb00000014006700700073005f00630061006d00650072006101000001410000011d0000001600fffffffb00000024004c0069006e00650044006500740065006300740069006f006e0049006d00610067006501000001a2000000bc0000000000000000fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a0056006900650077007300000001d70000020d000000b000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000064f0000003efc0100000002fb0000000800540069006d006500000000000000064f000002f600fffffffb0000000800540069006d006501000000000000045000000000000000000000037d0000023600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
-  SR300_image:
-    collapsed: false
+  QMainWindow State: 000000ff00000000fd00000004000000000000016a000002ebfc0200000009fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001f4000000fb00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000028000002eb000000dd00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006501000002520000014e00000000000000000000000100000126000002ebfc0200000008fb0000001a00630061006d006500720061005f00430061006d0065007200610000000028000000f20000001600fffffffb0000001800630061006d006500720061005f0049006d0061006700650100000028000001900000001600fffffffb000000220074006f0070005f00630061006d006500720061005f00430061006d006500720061000000017e000001400000001600fffffffb000000200074006f0070005f00630061006d006500720061005f0049006d00610067006501000001be000001550000001600fffffffb00000024004c0069006e00650044006500740065006300740069006f006e0049006d00610067006501000001a2000000bc0000000000000000fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a0056006900650077007300000001d70000020d000000b000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000064f0000003efc0100000002fb0000000800540069006d006500000000000000064f000002f600fffffffb0000000800540069006d0065010000000000000450000000000000000000000316000002eb00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -1001,8 +712,14 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1602
-  X: 58
-  Y: 279
-  gps_camera:
+  Width: 1458
+  X: 56
+  Y: 72
+  camera_Camera:
+    collapsed: false
+  camera_Image:
+    collapsed: false
+  top_camera_Camera:
+    collapsed: false
+  top_camera_Image:
     collapsed: false

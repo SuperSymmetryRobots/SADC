@@ -53,5 +53,14 @@
       <robotNamespace>seat_car</robotNamespace>
     </plugin>
   </gazebo>
+  
+  <gazebo>
+    <plugin name="seat_car_ground_truth" filename="libgazebo_ros_p3d.so">
+      <frameName>map</frameName>
+      <bodyName>base_link</bodyName>
+      <topicName>odom_ground_truth</topicName>
+      <updateRate>30.0</updateRate>
+    </plugin>
+  </gazebo>
 
 </robot>

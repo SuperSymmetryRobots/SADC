@@ -14,8 +14,8 @@
   <!-- gazebo sensors -->
   <xacro:include filename="$(find seat_car_description)/urdf/include/sensors/imu.gazebo" />
   <xacro:include filename="$(find seat_car_description)/urdf/include/sensors/laser.gazebo" />
-  <!--<xacro:include filename="$(find seat_car_description)/urdf/include/sensors/creative_camera.gazebo" />-->
-  <xacro:include filename="$(find seat_car_description)/urdf/include/sensors/front_camera.gazebo" />
-  <xacro:include filename="$(find seat_car_description)/urdf/include/sensors/gps_camera.gazebo" />
+  <xacro:include filename="$(find seat_car_description)/urdf/include/sensors/front_rgbd_camera.gazebo" />
+  <!--<xacro:include filename="$(find seat_car_description)/urdf/include/sensors/front_rgb_camera.gazebo" />--> <!-- only rgb, no depth-->
+  <xacro:include filename="$(find seat_car_description)/urdf/include/sensors/top_camera.gazebo" />
 
 </robot>

@@ -2,12 +2,10 @@
 
 <robot name="seat_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- Included URDF Files -->
   <xacro:property name="PI" value="3.1415926535897931" />
   <xacro:property name="angle_limit" value="${PI/3.0}" />
+  <xacro:property name="wheel_width" value="0.001" />
 
-  <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin,
-       navigation stack depends on this frame -->
   <link name="base_link">
     <inertial>
       <mass value="6" />
@@ -69,7 +67,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.0315" length="0.001"/>
+        <cylinder radius="0.0315" length="${wheel_width}"/>
       </geometry>
     </collision>
   </link>
@@ -112,7 +110,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.0315" length="0.001"/>
+        <cylinder radius="0.0315" length="${wheel_width}"/>
       </geometry>
     </collision>
   </link>
@@ -186,7 +184,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.0315" length="0.001"/>
+        <cylinder radius="0.0315" length="${wheel_width}"/>
       </geometry>
     </collision>
   </link>
@@ -260,7 +258,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.0315" length="0.001"/>
+        <cylinder radius="0.0315" length="${wheel_width}"/>
       </geometry>
     </collision>
   </link>

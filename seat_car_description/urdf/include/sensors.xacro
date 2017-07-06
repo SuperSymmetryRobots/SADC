@@ -29,7 +29,7 @@
     </collision>
   </link>
 
-  <joint name="base_link_sensor_board" type="fixed" >
+  <joint name="joint_base_link_to_sensor_board" type="fixed" >
     <parent link="base_link"/>
     <child link="sensor_board"/>
     <origin xyz="0 0 0.0415" rpy="0 0 0"/>
@@ -58,7 +58,7 @@
     </collision>
   </link>
 
-  <joint name="sensor_board_camera_board" type="fixed" >
+  <joint name="joint_sensor_board_to_camera_board" type="fixed" >
     <parent link="sensor_board"/>
     <child link="camera_board"/>
     <origin xyz="0.109 0 0.105" rpy="0 0 0"/>
@@ -92,7 +92,7 @@
     </collision>
   </link>
 
-  <joint name="sensor_board_imu" type="fixed" >
+  <joint name="joint_sensor_board_to_imu" type="fixed" >
     <parent link="sensor_board"/>
     <child link="imu"/>
     <origin xyz="0.239 0.02 0.0025" rpy="0 0 ${PI/2}"/>
@@ -122,14 +122,16 @@
     </collision>
   </link>
 
-  <joint name="sensor_board_laser" type="fixed" >
+  <joint name="joint_sensor_board_to_laser" type="fixed" >
     <parent link="sensor_board"/>
     <child link="laser"/>
     <origin xyz="0.10445 0 0.0333" rpy="0 0 -${PI}"/>
   </joint>
 
-  <!-- GPS camera -->
-  <link name="camera">
+  <!-- top camera -->
+  <xacro:property name="top_camera_name" value="top_camera" />
+  
+  <link name="${top_camera_name}">
     <inertial>
       <mass value="0.1600000" />
       <origin xyz="0.00000000 0.00000000 -0.01396703" rpy="0 0 0"/>
@@ -138,37 +140,39 @@
                izz="0.0000183" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
       <geometry>
         <mesh filename="package://seat_car_description/meshes/gps_camera.stl" />
       </geometry>
       <material name="Black" />
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
       <geometry>
         <mesh filename="package://seat_car_description/meshes/gps_camera.stl" />
       </geometry>
     </collision>
   </link>
 
-  <joint name="camera_board_camera" type="fixed" >
+  <joint name="joint_camera_board_to_${top_camera_name}" type="fixed" >
     <parent link="camera_board"/>
-    <child link="camera"/>
-    <origin xyz="0.019 0 0.0405" rpy="0 0 0"/>
+    <child link="${top_camera_name}"/>
+    <origin xyz="0.019 0 0.0405" rpy="0 -${PI/2} 0"/>
   </joint>
 
-  <link name="camera_optical">
+  <link name="${top_camera_name}_optical">
   </link>
 
-  <joint name="camera_camera_optical" type="fixed" >
-    <parent link="camera"/>
-    <child link="camera_optical"/>
-    <origin xyz="0.0 0 0.0" rpy="0 -${PI/2} 0"/>
+  <joint name="joint_${top_camera_name}_to_${top_camera_name}_optical" type="fixed" >
+    <parent link="${top_camera_name}"/>
+    <child link="${top_camera_name}_optical"/>
+    <origin xyz="0.0 0 0.0" rpy="-${PI/2} 0 -${PI/2}"/>
   </joint>
 
-  <!-- Creative camera -->
-  <link name="camera_link">
+  <!-- front camera -->
+  <xacro:property name="front_camera_name" value="camera" />
+  
+  <link name="${front_camera_name}_link">
     <inertial>
       <mass value="1.3000000" />
       <origin xyz="0.00000000 0.00000000 -0.01150000" rpy="0 0 0"/>
@@ -191,63 +195,18 @@
     </collision>
   </link>
 
-  <joint name="camera_board_camera_link" type="fixed" >
+  <joint name="joint_camera_board_to_${front_camera_name}_link" type="fixed" >
     <parent link="camera_board"/>
-    <child link="camera_link"/>
-    <origin xyz="0.119 0 0.0" rpy="0 ${PI/2} 0"/>
-  </joint>
-
-  <link name="camera_rgb_frame">
-  </link>
-
-  <joint name="camera_link_camera_rgb_frame" type="fixed" >
-    <parent link="camera_link"/>
-    <child link="camera_rgb_frame"/>
-    <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
-  </joint>
-
-  <link name="camera_depth_frame">
-  </link>
-
-  <joint name="camera_link_camera_depth_frame" type="fixed" >
-    <parent link="camera_link"/>
-    <child link="camera_depth_frame"/>
-    <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
-  </joint>
-
-  <link name="camera_rgb_optical_frame">
-  </link>
-
-  <joint name="camera_link_camera_rgb_optical_frame" type="fixed" >
-    <parent link="camera_link"/>
-    <child link="camera_rgb_optical_frame"/>
-    <origin xyz="0.0 0 0.0" rpy="${PI/2} -${PI/2} 0"/>
-  </joint>
-
-  <link name="camera_depth_optical_frame">
-  </link>
-
-  <joint name="camera_link_camera_depth_optical_frame" type="fixed" >
-    <parent link="camera_link"/>
-    <child link="camera_depth_optical_frame"/>
-    <origin xyz="0.0 0 0.0" rpy="${PI/2} -${PI/2} 0"/>
-  </joint>
-
-  <link name="camera_link2">
-  </link>
- 
-  <joint name="camera_board_camera_link2" type="fixed" >
-    <parent link="camera_board"/>
-    <child link="camera_link2"/>
+    <child link="${front_camera_name}_link"/>
     <origin xyz="0.119 0 0.0" rpy="0 0 0"/>
   </joint>
   
-  <link name="camera_rgb_optical_frame2">
+  <link name="${front_camera_name}_rgb_optical_frame">
   </link>
 
-  <joint name="camera_link_camera_rgb_optical_frame2" type="fixed" >
-    <parent link="camera_link2"/>
-    <child link="camera_rgb_optical_frame2"/>
+  <joint name="joint_${front_camera_name}_link_to_${front_camera_name}_rgb_optical_frame" type="fixed" >
+    <parent link="${front_camera_name}_link"/>
+    <child link="${front_camera_name}_rgb_optical_frame"/>
     <origin xyz="0 0 0" rpy="-${PI/2} 0 -${PI/2}"/>
   </joint>
 

@@ -21,7 +21,7 @@
         type="spawn_model" 
         args="-param robot_description
               -urdf -model $(arg name)
-              -x $(arg x) -y $(arg y) -z 0.04 -R 0 -P 0 -Y $(arg yaw) "/>
+              -x $(arg x) -y $(arg y) -z 0.104 -R 0 -P 0 -Y $(arg yaw) "/>
 
   <include file="$(find seat_car_control)/launch/control.launch">
     <arg name="name" value="$(arg name)"/>
@@ -62,10 +62,28 @@
   </node>
 
   <node name="$(arg name)_static_tf_world_map" pkg="tf" type="static_transform_publisher"
-        args="0 0 0 0 0 0 $(arg world_frame) $(arg map_frame) 100"/>
+        args="0 0 0.04 0 0 0 $(arg world_frame) $(arg map_frame) 100"/>
 
-  <!-- replace with localization node -->
+  <!--
   <node name="$(arg name)_static_tf_map_odom" pkg="tf" type="static_transform_publisher"
         args="$(arg x) $(arg y) 0.04 $(arg yaw) 0 0 $(arg map_frame) $(arg odom_frame) 100"/>
+  -->
+        
+  <node name="$(arg name)_fake_localization"
+        pkg ="fake_localization"
+        type="fake_localization">
+    <param name="odom_frame_id"   value="odom" />
+    <param name="global_frame_id" value="map" />
+    <param name="base_frame_id"   value="base_link" />
+    <param name="delta_x"   value="$(arg x)" />
+    <param name="delta_y"   value="$(arg y)" />
+    <param name="delta_yaw" value="$(arg yaw)" />
+    <remap from="base_pose_ground_truth" 
+             to="odom_ground_truth"/> <!-- odom_ground_truth, odom -->
+    <remap from="initialpose" 
+             to="/$(arg name)/initialpose"/>
+    <remap from="amcl_pose" 
+             to="/$(arg name)/amcl_pose"/>
+  </node>
 
 </launch>
