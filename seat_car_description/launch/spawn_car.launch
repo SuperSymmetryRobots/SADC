@@ -62,7 +62,7 @@
   </node>
 
   <node name="$(arg name)_static_tf_world_map" pkg="tf" type="static_transform_publisher"
-        args="0 0 0.04 0 0 0 $(arg world_frame) $(arg map_frame) 100"/>
+        args="0 0 0 0 0 0 $(arg world_frame) $(arg map_frame) 100"/>
 
   <!--
   <node name="$(arg name)_static_tf_map_odom" pkg="tf" type="static_transform_publisher"
@@ -75,9 +75,9 @@
     <param name="odom_frame_id"   value="odom" />
     <param name="global_frame_id" value="map" />
     <param name="base_frame_id"   value="base_link" />
-    <param name="delta_x"   value="$(arg x)" />
-    <param name="delta_y"   value="$(arg y)" />
-    <param name="delta_yaw" value="$(arg yaw)" />
+    <param name="delta_x"   value="$(arg x)+0.0" />
+    <param name="delta_y"   value="$(arg y)+0.0" />
+    <param name="delta_yaw" value="$(arg yaw)+0.0" />
     <remap from="base_pose_ground_truth" 
              to="odom_ground_truth"/> <!-- odom_ground_truth, odom -->
     <remap from="initialpose" 

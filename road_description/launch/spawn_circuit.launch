@@ -6,20 +6,14 @@
   </include>
 
   <include file="$(find road_description)/launch/spawn_ceiling.launch"/>
+  <include file="$(find road_description)/launch/spawn_trafficlights.launch"/>
 
   <include file="$(find road_description)/launch/spawn_box.launch">
-    <arg name="x" value="1.0"/>
-    <arg name="y" value="-7.5"/>
-    <arg name="length" value="1.0"/>
-    <arg name="width"  value="0.5"/>
-    <arg name="height" value="0.2"/>
-  </include>
-  
-  <include file="$(find road_description)/launch/spawn_cylinder.launch">
-    <arg name="x" value="-1.5"/>
-    <arg name="y" value="-3.5"/>
-    <arg name="radius" value="0.5"/>
-    <arg name="height" value="0.2"/>
+    <arg name="x" value="0.0"/>
+    <arg name="y" value="-2.2"/>
+    <arg name="length" value="0.43"/>
+    <arg name="width"  value="0.2"/>
+    <arg name="height" value="0.15"/>
   </include>
 
 </launch>
