@@ -4,7 +4,8 @@
   <arg name="x"     default="0.0"/>
   <arg name="y"     default="0.0"/>
   <arg name="yaw"   default="0.0"/>
-  <arg name="model" default="$(arg name)"/>
+  <arg name="type"  default="balls"/> <!-- panels, balls -->
+  <arg name="model" default="$(arg name)_$(arg type)"/>
   <arg name="model_path" default="$(find road_description)/urdf/$(arg model).xacro"/>
   <arg name="parent" default="$(arg name)_base_link"/>
 

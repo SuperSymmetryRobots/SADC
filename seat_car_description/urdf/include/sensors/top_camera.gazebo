@@ -39,11 +39,13 @@
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>${top_camera_name}_optical</frameName>
         <hackBaseline>0.07</hackBaseline>
-        <distortionK1>0.0</distortionK1>
-        <distortionK2>0.0</distortionK2>
-        <distortionK3>0.0</distortionK3>
-        <distortionT1>0.0</distortionT1>
+        <!-- Distortion not supported on Gazebo 2.2
+        <distortionK1>-0.252292</distortionK1>
+        <distortionK2>0.035156</distortionK2>
+        <distortionK3>0.00057</distortionK3>
+        <distortionT1>-0.002072</distortionT1>
         <distortionT2>0.0</distortionT2>
+        -->
       </plugin>
     </sensor>
   </gazebo>
