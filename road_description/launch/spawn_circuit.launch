@@ -1,0 +1,19 @@
+<!-- -->
+<launch>
+
+  <include file="$(find road_description)/launch/spawn_road.launch">
+    <arg name="model" value="circuit_junctions"/>
+  </include>
+
+  <include file="$(find road_description)/launch/spawn_ceiling.launch"/>
+  <include file="$(find road_description)/launch/spawn_trafficlights.launch"/>
+
+  <include file="$(find road_description)/launch/spawn_box.launch">
+    <arg name="x" value="0.0"/>
+    <arg name="y" value="-2.2"/>
+    <arg name="length" value="0.43"/>
+    <arg name="width"  value="0.2"/>
+    <arg name="height" value="0.15"/>
+  </include>
+
+</launch>
