@@ -16,7 +16,9 @@ http://www.autonomousdrivingchallenge.com
 mkdir -p ~/seat
 cd ~/seat
 git clone -b version-3 https://github.com/AutoModelCar/model_car.git model_car_3
+#git clone -b version-3-kinetic https://github.com/AutoModelCar/model_car.git model_car_3
 source /opt/ros/indigo/setup.bash
+#source /opt/ros/kinetic/setup.bash
 cd ~/seat/model_car_3/catkin_ws
 rm -rf build devel
 # We actually only need the odometry package
@@ -28,7 +30,7 @@ source ~/seat/model_car_3/catkin_ws/devel/setup.bash
 mkdir -p ~/seat/catkin_ws/src
 cd ~/seat/catkin_ws
 catkin_make
-source ~/seat/catwkin_ws/devel/setup.bash
+source ~/seat/catkin_ws/devel/setup.bash
 # You can/should add this last line to you ~/.bashrc
 ```
 
