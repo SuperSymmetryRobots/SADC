@@ -31,14 +31,16 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="${width} ${width} ${thick}"/>
+          <!--<box size="${width} ${width} ${thick}"/>-->
+          <cylinder radius="${width/2.0}" length="${thick}"/>
         </geometry>
         <material name="${urdf_color}"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="${width} ${width} ${thick}"/>
+          <!--<box size="${width} ${width} ${thick}"/>-->
+          <cylinder radius="${width/2.0}" length="${thick}"/>
         </geometry>
       </collision>
     </link>

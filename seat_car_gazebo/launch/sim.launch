@@ -1,6 +1,7 @@
 <!-- -->
 <launch>
 
+  <arg name="circuit"  default="final"/>
   <arg name="name"  default="seat_car"/>
   <arg name="model" default="car"/>
   <arg name="world" default="empty"/>
@@ -16,7 +17,9 @@
     <arg name="gui"   value="$(arg gazebo_gui)"/>
   </include>
   
-  <include file="$(find road_description)/launch/spawn_circuit.launch"/>
+  <include file="$(find road_description)/launch/spawn_circuit.launch">
+    <arg name="circuit" value="$(arg circuit)"/>
+  </include>
   
   <include file="$(find seat_car_description)/launch/spawn_car.launch">
     <arg name="name"  value="$(arg name)"/>

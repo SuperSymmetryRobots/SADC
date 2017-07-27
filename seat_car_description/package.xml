@@ -6,7 +6,8 @@
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
-  <maintainer email="labrobotica@iri.upc.edu">labrobotica</maintainer>
+  <maintainer email="shernand@iri.upc.edu">shernand</maintainer>
+  <maintainer email="fherrero@iri.upc.edu">fherrero</maintainer>
 
   <!-- One license tag required, multiple allowed, one license per tag -->
   <!-- Commonly used license strings: -->
@@ -16,12 +17,14 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <url type="website">http://wiki.ros.org/seat_car_description</url>
+  <!--<url type="website">http://wiki.ros.org/seat_car_description</url>-->
 
   <!-- Author tags are optional, mutiple are allowed, one per tag -->
   <!-- Authors do not have to be maintianers, but could be -->
   <!-- Example: -->
-  <author email="shernand@iri.upc.edu">Sergi Hernandez</author>
+  <author email="shernand@iri.upc.edu">shernand</author>
+  <author email="fherrero@iri.upc.edu">fherrero</author>
+  
 
   <!-- The *_depend tags are used to specify dependencies -->
   <!-- Dependencies can be catkin packages or system dependencies -->
