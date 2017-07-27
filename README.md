@@ -11,8 +11,9 @@ http://www.autonomousdrivingchallenge.com
 
 ## Installing
 
+
+1. Clone AutoModelCar version-3 repo, because we need its odometry package
 ```
-# Clone AutoModelCar version-3 repo, because we need its odometry package
 mkdir -p ~/seat
 cd ~/seat
 git clone -b version-3 https://github.com/AutoModelCar/model_car.git model_car_3
@@ -24,8 +25,9 @@ rm -rf build devel
 # We actually only need the odometry package
 catkin_make --only-pkg-with-deps odometry
 ```
+
+2. Create our catkin_ws workspace, overlaying model_car_3/catkin_ws
 ```
-# Create our catkin_ws workspace, overlaying model_car_3/catkin_ws
 source ~/seat/model_car_3/catkin_ws/devel/setup.bash
 mkdir -p ~/seat/catkin_ws/src
 cd ~/seat/catkin_ws
@@ -34,8 +36,9 @@ source ~/seat/catkin_ws/devel/setup.bash
 # You can/should add this last line to you ~/.bashrc
 ```
 
+
+3. Clone simulator in catkin_ws
 ```
-# Clone simulator in catwkin_ws
 roscd; cd ../src
 git clone https://gitlab.iri.upc.edu/seat_adc/seat_car_simulator.git
 rosdep install -i --from-paths seat_car_simulator
