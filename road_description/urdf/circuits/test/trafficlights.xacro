@@ -11,7 +11,7 @@
                       parent="$(arg parent)"
                       light_color="green"
                       light_material="Gazebo/GreenGlow">
-    <origin xyz="1.0 -0.5 0" rpy="0 0 ${PI}"/>
+    <origin xyz="0.75 -0.5 0" rpy="0 0 ${PI}"/>
   </xacro:trafficlight>
   
   <xacro:trafficlight name="trafficlight1"

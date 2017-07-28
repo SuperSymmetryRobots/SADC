@@ -16,7 +16,7 @@
     <up_axis>Y_UP</up_axis></asset>
   <library_images>
     <image id="Map #1-image" name="Map #1">
-      <init_from>png/full.png</init_from>
+      <init_from>png/final.png</init_from>
     </image>
   </library_images>
   <library_materials>

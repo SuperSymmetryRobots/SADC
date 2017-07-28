@@ -19,7 +19,7 @@
     </collision>
   </link>
 
-  <xacro:road name="$(arg name)0" parent="$(arg parent)" dae="full" size="12">
+  <xacro:road name="$(arg name)0" parent="$(arg parent)" dae="final" size="12">
     <origin xyz="0 -5.5 0" rpy="0 0 0"/>
   </xacro:road>
 

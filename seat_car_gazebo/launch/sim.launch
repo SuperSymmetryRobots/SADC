@@ -6,7 +6,7 @@
   <arg name="model" default="car"/>
   <arg name="world" default="empty"/>
   <arg name="gazebo_gui" default="False"/>
-  <arg name="car_x"    default="-0.2"/>
+  <arg name="car_x"    default="0.0"/>
   <arg name="car_y"    default="-0.2"/>
   <arg name="car_yaw"  default="0.0"/>
   <arg name="rviz"       default="true"/>
