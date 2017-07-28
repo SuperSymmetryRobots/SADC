@@ -157,7 +157,7 @@
   <joint name="joint_camera_board_to_${top_camera_name}" type="fixed" >
     <parent link="camera_board"/>
     <child link="${top_camera_name}"/>
-    <origin xyz="0.019 0 0.0405" rpy="0 -${PI/2} 0"/>
+    <origin xyz="0.019 0 0.0405" rpy="0 -${PI/2} ${PI}"/>
   </joint>
 
   <link name="${top_camera_name}_optical">
