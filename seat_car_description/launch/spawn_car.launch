@@ -10,6 +10,8 @@
   <arg name="world_frame" default="world"/>
   <arg name="map_frame"   default="map"/>
   <arg name="odom_frame"  default="odom"/>
+  
+  <arg name="fake_localization" default="true"/>
 
   <include file="$(find seat_car_description)/launch/description.launch">
     <arg name="name"  value="$(arg name)"/>
@@ -64,26 +66,31 @@
   <node name="$(arg name)_static_tf_world_map" pkg="tf" type="static_transform_publisher"
         args="0 0 0 0 0 0 $(arg world_frame) $(arg map_frame) 100"/>
 
-  <!--
-  <node name="$(arg name)_static_tf_map_odom" pkg="tf" type="static_transform_publisher"
-        args="$(arg x) $(arg y) 0.04 $(arg yaw) 0 0 $(arg map_frame) $(arg odom_frame) 100"/>
-  -->
-        
-  <node name="$(arg name)_fake_localization"
-        pkg ="fake_localization"
-        type="fake_localization">
-    <param name="odom_frame_id"   value="odom" />
-    <param name="global_frame_id" value="map" />
-    <param name="base_frame_id"   value="base_link" />
-    <param name="delta_x"   value="$(arg x)+0.0" />
-    <param name="delta_y"   value="$(arg y)+0.0" />
-    <param name="delta_yaw" value="$(arg yaw)+0.0" />
-    <remap from="base_pose_ground_truth" 
-             to="odom_ground_truth"/> <!-- odom_ground_truth, odom -->
-    <remap from="initialpose" 
-             to="/$(arg name)/initialpose"/>
-    <remap from="amcl_pose" 
-             to="/$(arg name)/amcl_pose"/>
-  </node>
+  <group if="$(arg fake_localization)">  
+    <node name="$(arg name)_fake_localization"
+          pkg ="fake_localization"
+          type="fake_localization">
+      <param name="odom_frame_id"   value="$(arg odom_frame)" />
+      <param name="global_frame_id" value="$(arg map_frame)" />
+      <param name="base_frame_id"   value="base_link" />
+      <param name="delta_x"   value="$(arg x)+0.0" />
+      <param name="delta_y"   value="$(arg y)+0.0" />
+      <param name="delta_yaw" value="$(arg yaw)+0.0" />
+      <remap from="base_pose_ground_truth" 
+              to="odom_ground_truth"/> <!-- odom_ground_truth, odom -->
+      <remap from="initialpose" 
+              to="/$(arg name)/initialpose"/>
+      <remap from="amcl_pose" 
+              to="/$(arg name)/amcl_pose"/>
+    </node>
+  </group>
+  
+  <group unless="$(arg fake_localization)">
+
+    <node name="$(arg name)_static_tf_map_odom" pkg="tf" type="static_transform_publisher"
+          args="$(arg x) $(arg y) 0.04 $(arg yaw) 0 0 $(arg map_frame) $(arg odom_frame) 100">
+    </node>
+
+  </group>
 
 </launch>

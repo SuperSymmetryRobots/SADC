@@ -9,6 +9,7 @@
   <arg name="car_x"    default="0.0"/>
   <arg name="car_y"    default="-0.2"/>
   <arg name="car_yaw"  default="0.0"/>
+  <arg name="fake_localization"  default="true"/>
   <arg name="rviz"       default="true"/>
   <arg name="rviz_file"  default="$(arg name)"/>
 
@@ -27,6 +28,7 @@
     <arg name="x"     value="$(arg car_x)"/>
     <arg name="y"     value="$(arg car_y)"/>
     <arg name="yaw"   value="$(arg car_yaw)"/>
+    <arg name="fake_localization" value="$(arg fake_localization)"/>
   </include>
   
   <node name="rviz"
