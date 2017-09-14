@@ -87,9 +87,11 @@
   
   <group unless="$(arg fake_localization)">
 
+    <!--
     <node name="$(arg name)_static_tf_map_odom" pkg="tf" type="static_transform_publisher"
           args="$(arg x) $(arg y) 0.04 $(arg yaw) 0 0 $(arg map_frame) $(arg odom_frame) 100">
     </node>
+    -->
 
   </group>
 
