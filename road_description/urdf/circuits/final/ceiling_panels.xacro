@@ -25,5 +25,12 @@
                urdf_color="blue">
     <origin xyz="-4.0 0.0 $(arg height)" rpy="0 0 0"/>
   </xacro:panel>
+  
+  <xacro:panel name="panel_purple" 
+               parent="$(arg parent)"
+               gazebo_material="Gazebo/Purple"
+               urdf_color="purple">
+    <origin xyz="-4.0 -11.0 $(arg height)" rpy="0 0 0"/>
+  </xacro:panel>
 
 </robot>
