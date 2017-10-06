@@ -2,6 +2,7 @@
 <robot>
 
   <property name="top_camera_name" value="top_camera" />
+  <property name="rate" value="5.0" />
 
   <gazebo reference="${top_camera_name}">
     <material>Gazebo/Black</material>
@@ -13,7 +14,7 @@
 
   <gazebo reference="${top_camera_name}">
     <sensor type="camera" name="${top_camera_name}">
-      <update_rate>5.0</update_rate>
+      <update_rate>${rate}</update_rate>
       <camera name="${top_camera_name}">
         <horizontal_fov>2.96</horizontal_fov>
         <image>
@@ -33,7 +34,7 @@
       </camera>
       <plugin name="${top_camera_name}_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
-        <updateRate>25.0</updateRate>
+        <updateRate>${rate}</updateRate>
         <cameraName>usb_cam</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>

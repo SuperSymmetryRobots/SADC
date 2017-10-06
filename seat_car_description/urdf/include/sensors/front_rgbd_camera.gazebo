@@ -15,7 +15,8 @@
   <gazebo reference="${front_camera_name}_link">
     <sensor type="depth" name="${front_camera_name}">       
       <always_on>1</always_on>
-      <visualize>true</visualize>             
+      <visualize>true</visualize>
+      <update_rate>${rate}</update_rate>
       <camera>
         <horizontal_fov>1.24</horizontal_fov>  
         <image>
