@@ -18,7 +18,7 @@
       <visualize>true</visualize>
       <update_rate>${rate}</update_rate>
       <camera>
-        <horizontal_fov>1.24</horizontal_fov>  
+        <horizontal_fov>0.83</horizontal_fov>  
         <image>
           <width>640</width>
           <height>480</height>
