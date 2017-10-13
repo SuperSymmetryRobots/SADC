@@ -45,7 +45,7 @@
         <geometry>
           <box size="${LENGTH} ${WIDTH} ${HEIGHT}"/>
         </geometry>
-        <material name="orange"/>
+        <material name="grey"/>
       </visual>
     </link>
     

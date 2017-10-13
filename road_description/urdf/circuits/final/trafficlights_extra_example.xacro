@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot name="trafficlights" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="PI" value="3.1415926535897931" />
+  <xacro:include filename="$(find road_description)/urdf/trafficlight/trafficlight_macro.xacro" />
+  <xacro:include filename="$(find road_description)/urdf/trafficlight/signal_macro.xacro" />
+
+  <link name="$(arg parent)">
+  </link>
+ 
+  <xacro:trafficlight name="semaphore_roundabout1"
+                      parent="$(arg parent)"
+                      tag_dae="tag74"
+                      light_color="green"
+                      light_material="Gazebo/RedGlow"
+                      light_material2="Gazebo/GreenGlow">
+    <origin xyz="1.5 -4.1 0" rpy="0 0 ${PI/6}"/>
+  </xacro:trafficlight>
+  
+  <xacro:trafficlight name="semaphore_roundabout2"
+                      parent="$(arg parent)"
+                      tag_dae="tag74"
+                      light_color="red"
+                      light_material="Gazebo/RedGlow"
+                      light_material2="Gazebo/GreenGlow">
+    <origin xyz="2.0 -6 0" rpy="0 0 ${-PI/6}"/>
+  </xacro:trafficlight>
+
+  
+  <xacro:trafficlight name="semaphore_intersection1"
+                      parent="$(arg parent)"
+                      tag_dae="tag74"
+                      light_color="red"
+                      light_material="Gazebo/RedGlow"
+                      light_material2="Gazebo/GreenGlow">
+    <origin xyz="-4.2 -0.6 0" rpy="0 0 ${-PI/4}"/>
+  </xacro:trafficlight>
+  
+  <xacro:trafficlight name="semaphore_intersection2"
+                      parent="$(arg parent)"
+                      tag_dae="tag74"
+                      light_color="red"
+                      light_material="Gazebo/RedGlow"
+                      light_material2="Gazebo/GreenGlow">
+    <origin xyz="-6.0 -5.5 0" rpy="0 0 ${PI/2}"/>
+  </xacro:trafficlight>
+  
+  <xacro:trafficlight name="semaphore_intersection3"
+                      parent="$(arg parent)"
+                      tag_dae="tag74"
+                      light_color="red"
+                      light_material="Gazebo/RedGlow"
+                      light_material2="Gazebo/GreenGlow">
+    <origin xyz="-5.0 -6.5 0" rpy="0 0 ${-PI/2}"/>
+  </xacro:trafficlight>
+  
+  <xacro:signal name="signal_right1"
+                      parent="$(arg parent)"
+                      tag_dae="tag57"
+                      signal_dae="arrow_left">
+    <origin xyz="1.0 0.0 0" rpy="0 0 ${PI}"/>
+  </xacro:signal>
+  
+  <xacro:signal name="signal_right2"
+                      parent="$(arg parent)"
+                      tag_dae="tag29"
+                      signal_dae="arrow_right">
+    <origin xyz="1.0 -0.25 0" rpy="0 0 ${PI}"/>
+  </xacro:signal>
+
+
+</robot>

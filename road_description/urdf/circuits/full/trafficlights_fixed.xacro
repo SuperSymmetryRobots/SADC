@@ -13,7 +13,7 @@
                       light_color="red"
                       light_material="Gazebo/RedGlow"
                       light_material2="Gazebo/GreenGlow">
-    <origin xyz="1.0 -0.5 0" rpy="0 0 ${PI}"/>
+    <origin xyz="1.05 -0.5 0" rpy="0 0 ${PI}"/>
   </xacro:trafficlight>
   
   <xacro:trafficlight name="semaphore_start2"
@@ -22,7 +22,7 @@
                       light_color="red"
                       light_material="Gazebo/RedGlow"
                       light_material2="Gazebo/GreenGlow">
-    <origin xyz="-1.0 0.5 0" rpy="0 0 0"/>
+    <origin xyz="-1.05 0.5 0" rpy="0 0 0"/>
   </xacro:trafficlight>
   
   <xacro:trafficlight name="semaphore_parking1"
@@ -31,7 +31,7 @@
                       light_color="blue"
                       light_material="Gazebo/Blue"
                       light_material2="Gazebo/Black">
-    <origin xyz="-1.0 -10.5 0" rpy="0 0 0"/>
+    <origin xyz="1.55 -0.5 0" rpy="0 0 ${PI}"/>
   </xacro:trafficlight>
   
   <xacro:trafficlight name="semaphore_parking2"
@@ -39,7 +39,7 @@
                       tag_dae="tag47"
                       light_color="blue"
                       light_material="Gazebo/Blue">
-    <origin xyz="-6.0 -2.5 0" rpy="0 0 ${PI/2}"/>
+    <origin xyz="-3.1 -0.5 0" rpy="0 0 ${PI}"/>
   </xacro:trafficlight>
 
 </robot>

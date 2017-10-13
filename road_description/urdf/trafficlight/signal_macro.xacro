@@ -2,7 +2,7 @@
 
 <root xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find road_description)/urdf/materials.xacro" />
+  <!--<xacro:include filename="$(find road_description)/urdf/materials.xacro" />-->
 
   <xacro:property name="PI" value="3.1415926535897931" />
   <xacro:property name="panel_width"    value="0.07" />
@@ -15,17 +15,19 @@
   <xacro:property name="light_height"   value="0.025" />
   <xacro:property name="light_z_offset" value="0.125" />
 
-  <xacro:macro name="trafficlight" 
-               params="name:=trafficlight                
+  <xacro:macro name="signal" 
+               params="name:=signal                
                        parent:=${name}_base_link 
                        *origin
-                       tag_dae:=tag47
+                       tag_dae:=tag57
+                       signal_dae:=arrow_left
                        light_color:=red
                        light_material:=Gazebo/RedGlow
                        light_material2:=Gazebo/GreenGlow
                        ">
     
     <!-- tag_dae = tag95, tag47, tag74, tag29, tag57 -->
+    <!-- signal_dae = arrow_left, arrow_right -->
     <!-- light_color    = red,            green,            blue,           black -->
     <!-- light_material = Gazebo/RedGlow, Gazebo/GreenGlow, Gazebo/BlueSky, Gazebo/Black -->
 
@@ -114,7 +116,7 @@
     </link>
 
     <joint name="joint_${name}_light_link_to_${name}_light_image" type="fixed">
-      <origin xyz="${panel_depth/2.0+delta} 0 ${light_height/2.0+light_z_offset}" rpy="0 0 0" />
+      <origin xyz="${panel_depth/2.0+delta} 0 ${light_height/2.0+light_z_offset}" rpy="0 ${PI} -${PI/2}" />
       <parent link="${name}_light_link"/>
       <child link="${name}_light_image" />
     </joint>
@@ -123,9 +125,8 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="0.001 ${light_width} ${light_height}"/>
+          <mesh filename="package://road_description/urdf/trafficlight/dae/${signal_dae}.dae" scale="${light_width} 1.0 ${light_height}"/>
         </geometry>
-        <material name="${light_color}"/>
       </visual>
     </link>
 
@@ -138,13 +139,6 @@
 
     <gazebo reference="${name}_light_image">
       <!--<material>${light_material}</material>-->
-      <visual>
-        <plugin name="${name}_color_plugin" filename="libcolor_plugin.so" >
-          <element_name>${name}</element_name>
-          <material>${light_material}</material>
-          <material2>${light_material2}</material2>
-        </plugin>
-      </visual>
     </gazebo>
     <!-- LIGHT -->
 

@@ -17,7 +17,7 @@
     </gazebo>
     
     <gazebo reference="body">
-      <material>Gazebo/Orange</material>
+      <material>Gazebo/Grey</material>
       <mu1>0</mu1>
       <mu2>0</mu2>
     </gazebo>
