@@ -53,6 +53,7 @@
   <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
 
+  <run_depend>color_plugin</run_depend>
   <run_depend>road_description</run_depend>
   <run_depend>seat_car_control</run_depend>
   <run_depend>seat_car_controller</run_depend>
