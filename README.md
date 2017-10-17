@@ -51,6 +51,9 @@ catkin_make --only-pkg-with-deps seat_car_simulator
 ```
 roslaunch seat_car_gazebo sim.launch
 
+# Test semaphore
+rosservice call /semaphore_start1_color_plugin/trigger
+
 # Test car movement
 rostopic pub /manual_control/steering std_msgs/Int16 "data: 75"
 rostopic pub /manual_control/speed    std_msgs/Int16 "data: -750"
