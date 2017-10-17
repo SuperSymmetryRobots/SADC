@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8.3)
 project(color_plugin)
 # set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+
 find_package(catkin REQUIRED COMPONENTS roscpp std_msgs gazebo_plugins)
 
 catkin_package(
