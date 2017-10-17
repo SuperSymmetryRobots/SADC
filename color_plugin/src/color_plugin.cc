@@ -24,10 +24,14 @@ ColorPlugin::ColorPlugin()
 {
   this->nh = NULL;
   this->material_name="Gazebo/RedGlow";
+  this->material1_name="Gazebo/RedGlow";
+  this->material2_name="Gazebo/GreenGlow";
+  this->plugin_name="empty_plugin_name";
   this->color.Set(1, 0 , 0);
   this->new_material=false;
   this->new_color=false;
   this->trigger_state=false;
+  
 }
 
 ColorPlugin::~ColorPlugin()
@@ -38,26 +42,21 @@ ColorPlugin::~ColorPlugin()
 void ColorPlugin::Load(gazebo::rendering::VisualPtr _parent, sdf::ElementPtr _sdf)
 {
   this->model = _parent;
+  
+  this->plugin_name = this->GetHandle().c_str();
 
-  if(_sdf->HasElement("element_name"))
-    this->plugin_name =  _sdf->Get<std::string>("element_name");
-  
-  if(_sdf->HasElement("name"))
-    this->plugin_name =  _sdf->Get<std::string>("name");
-  
-  if(_sdf->HasElement("material"))
+  if(_sdf->GetElement("sdf")->HasElement("material"))
   {
-    this->material1_name =  _sdf->Get<std::string>("material");
+    this->material1_name =  _sdf->GetElement("sdf")->Get<std::string>("material");
     this->material_name= this->material1_name;
     this->new_material=true;
   }
   
-  if(_sdf->HasElement("material2"))
+  if(_sdf->GetElement("sdf")->HasElement("material2"))
   {
-    this->material2_name =  _sdf->Get<std::string>("material2");
+    this->material2_name =  _sdf->GetElement("sdf")->Get<std::string>("material2");
     this->new_material=true;
   }
-  
 
   this->pluginThread = boost::thread(boost::bind(&ColorPlugin::threadFunction, this));
   this->updateConnection = gazebo::event::Events::ConnectPreRender(boost::bind(&ColorPlugin::OnUpdate, this));
